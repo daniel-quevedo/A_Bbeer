@@ -1,10 +1,105 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body{
+  background-color: #FFFFE2;
+}
 .bgLogin{
   background-image: url('../img/background.jpg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
 }
-
 .opa{
   opacity: 90%;
+}
+
+.icon-sidebar{
+  margin-right: 1.5em;
+}
+
+header{
+  padding: 0.5em;
+  border-bottom: 1px solid #250001;
+  background-color: #762B00;
+}
+header a, header a:hover{
+  text-decoration: none;
+  color: #FFFFE2;
+}
+header .menu a{
+  text-decoration: none;
+  font-size: 1.5em;
+  color: #FFFFE2;
+}
+header .menu span{
+  font-size: 1.5em;
+  margin-left: 1.5em;
+  color: #FFFFE2;
+}
+header .dropdown span{
+  cursor: pointer;
+  margin-left: 1em;
+}
+
+/* Sidebar ===========================================*/
+.sidebar{
+  top: 3.29em;
+  left: 0;
+  width: 17%;
+  height: 100vh;
+  background-color: #250001;
+  position: fixed;
+  overflow-y: auto;
+  overflow-x: hidden;
+  transition: 0.3s ease-out;
+}
+.sidebar .info .img_info{
+  margin-top: 15%;
+  margin-bottom: 5%;
+  margin-left: 15%;
+  width: 10em;
+  height: 9.7em;
+  border-radius: 50%;
+  transition: 0.3s ease-out;
+
+}
+.sidebar .info .text_info>h5{
+  text-align: center;
+  padding-bottom: 10%;
+  margin-bottom: 0px;
+  color: #FFFFE2;
+}
+.sidebar ul{
+  padding-left: 0;
+}
+.sidebar ul li{
+  padding-left: 0.5em;
+  list-style-type: none;
+  border-bottom: 1px solid #FFFFE2;
+  height: 50px;
+  padding-top: 0.80em;
+}
+.sidebar ul li:hover{
+  border-left: 3px solid #762B00;
+  background-color: #FFA93B;
+}
+.sidebar ul .selected{
+  border-left: 3px solid #762B00;
+  background-color: #FFA93B;
+}
+.sidebar ul li a{
+  text-decoration: none;
+  color: #FFFFE2;
+  display: inline-block;
+}
+/* fin sidebar =========================================== */
+
+main{
+  margin-top: 5px;
+  margin-left: 17%;
+  transition: margin-left 0.3s;
+  padding: 20px;
 }

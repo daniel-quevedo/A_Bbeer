@@ -1,9 +1,11 @@
-@extends('layouts.layout')
+@include('layouts.layout')
 
 @section('content')
-  <h1>Bienvenido</h1>
+  <h5>Administrador</h5>
 @endsection
+
 @section('scripts')
   <script>
+    
   </script>
 @endsection
