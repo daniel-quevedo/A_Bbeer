@@ -11,6 +11,7 @@ function optSidebar() {
     document.getElementById('img_info').style.marginTop = '20px';
     document.getElementById('img_info').style.marginBottom = '20px';
     document.getElementById('text_info').style.display = 'none';
+    document.getElementById('ico-submenu').style.display = 'none';
     for (let i = links.length -1 ; i >= 0; i--) {
       links[i].style.display = 'none';
     }

@@ -11,7 +11,7 @@
   <title>@yield('título','Inicio')</title>
 </head>
 <body>
-  <header>
+  <div class="header">
     <div class="d-flex justify-content-between">
       <div class="menu">
         <a href="javascript:void(0)" onclick="optSidebar()">
@@ -21,7 +21,7 @@
       </div>
       <div class="dropdown mt-1">
         <a class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-          {{ Auth::user()->name }}
+          {{ Auth::user()->primer_nom }} {{ Auth::user()->primer_ape }}
         </a>
         <ul class="dropdown-menu">
           <li>
@@ -35,47 +35,78 @@
         </ul>
       </div>
     </div>
-
-  </header>
+  </div>
   <section>
-    <nav class="sidebar" id="sidebar">
+    <div class="sidebar" id="sidebar">
       <div class="info" id="info">
         <img src="{{ asset('img/avatar.png') }}" class="img_info" id="img_info">
         <div class="text_info" id="text_info">
-          <h5> {{ Auth::user()->name }}</h5>
+          <h5> {{ Auth::user()->primer_nom }} {{ Auth::user()->primer_ape }}</h5>
         </div>
       </div>
-      <ul>
-        <li class="selected">
+      <div class="menu">
+        <div class="item-menu">
           <a href="">
             <i class="icon-sidebar fa-lg fa-solid fa-house"></i>
             <span class="txt_links">Inicio</span>
           </a>
-        </li>
-        <li>
-          <a href="">
+        </div>
+        <div class="item-menu">
+          <a>
             <i class="icon-sidebar fa-lg fa-solid fa-list"></i>
             <span class="txt_links">Parametrización</span>
+            <i class="fa-solid fa-angle-right ico-submenu" id="ico-submenu"></i>
           </a>
-        </li>
-        <li>
+          <div class="submenu">
+            <a href="" class="sub-item">
+              <i class="icon-sidebar fa-solid fa-users"></i>
+              <span class="txt_links">Usuarios</span>
+            </a>
+            <a href="" class="sub-item">
+              <i class="icon-sidebar fa-solid fa-city"></i>
+              <span class="txt_links">Ciudad</span>
+            </a>
+            <a href="" class="sub-item">
+              <i class="icon-sidebar fa-solid fa-earth-americas"></i>
+              <span class="txt_links">Pais</span>
+            </a>
+            <a href="" class="sub-item">
+              <i class="icon-sidebar fa-solid fa-clipboard"></i>
+              <span class="txt_links">Mesa</span>
+            </a>
+            <a href="" class="sub-item">
+              <i class="icon-sidebar fa-solid fa-dolly"></i>
+              <span class="txt_links">Productos</span>
+            </a>
+          </div>
+        </div>
+        <div class="item-menu">
           <a href="">
             <i class="icon-sidebar fa-lg fa-solid fa-folder-open"></i>
             <span class="txt_links">Reportes</span>
           </a>
-        </li>
-        <li>
+        </div>
+        <div class="item-menu">
           <a href="">
             <i class="icon-sidebar fa-lg fa-solid fa-screwdriver-wrench"></i>
             <span class="txt_links">Configuración</span>
           </a>
-        </li>
-      </ul>
-    </nav>
+        </div>
+      </div>
+    </div>
     <main id="main">
       @yield('content')
     </main>
   </section>
+  <script>
+    const submenu = document.querySelector('.submenu');
+    const parentMenu = document.querySelector('.sidebar .item-menu:nth-child(2)');
+
+    parentMenu.addEventListener('click', function() {
+      submenu.classList.toggle('hide');
+      document.querySelector('.ico-submenu').classList.toggle('rotate');
+    });
+  </script>
   <script src="{{ asset('js/javascript.js') }}"></script>
 </body>
 @yield('scripts')

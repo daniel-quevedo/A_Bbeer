@@ -6,6 +6,11 @@
 body{
   background-color: #FFFFE2;
 }
+
+.sidebar::-webkit-scrollbar{
+  width: 1px;
+}
+
 .bgLogin{
   background-image: url('../img/background.jpg');
   background-repeat: no-repeat;
@@ -20,33 +25,36 @@ body{
   margin-right: 1.5em;
 }
 
-header{
+.header{
+  position: relative;
+  z-index: 100;
   padding: 0.5em;
   border-bottom: 1px solid #250001;
-  background-color: #762B00;
+  background-color: #250001;
 }
-header a, header a:hover{
+.header a, .header a:hover{
   text-decoration: none;
   color: #FFFFE2;
 }
-header .menu a{
+.header .menu a{
   text-decoration: none;
   font-size: 1.5em;
   color: #FFFFE2;
 }
-header .menu span{
+.header .menu span{
   font-size: 1.5em;
   margin-left: 1.5em;
   color: #FFFFE2;
 }
-header .dropdown span{
+.header .dropdown span{
   cursor: pointer;
   margin-left: 1em;
 }
 
 /* Sidebar ===========================================*/
 .sidebar{
-  top: 3.29em;
+  padding-top: 3.29em;
+  top: 0;
   left: 0;
   width: 17%;
   height: 100vh;
@@ -57,14 +65,13 @@ header .dropdown span{
   transition: 0.3s ease-out;
 }
 .sidebar .info .img_info{
-  margin-top: 15%;
+  margin-top: 10%;
   margin-bottom: 5%;
   margin-left: 15%;
   width: 10em;
   height: 9.7em;
   border-radius: 50%;
   transition: 0.3s ease-out;
-
 }
 .sidebar .info .text_info>h5{
   text-align: center;
@@ -72,28 +79,54 @@ header .dropdown span{
   margin-bottom: 0px;
   color: #FFFFE2;
 }
-.sidebar ul{
+.sidebar .menu{
   padding-left: 0;
+  width: 100%;
 }
-.sidebar ul li{
-  padding-left: 0.5em;
-  list-style-type: none;
-  border-bottom: 1px solid #FFFFE2;
-  height: 50px;
-  padding-top: 0.80em;
+
+.sidebar .menu .item-menu{
+  cursor: pointer;
+  position: relative;
 }
-.sidebar ul li:hover{
+.sidebar .menu .item-menu a{
+  text-decoration: none;
+  padding: 0.8em;
+  color: #FFFFE2;
+  display: block;
+}
+.sidebar .menu .item-menu a:hover{
   border-left: 3px solid #762B00;
   background-color: #FFA93B;
 }
-.sidebar ul .selected{
+.sidebar .menu .selected{
   border-left: 3px solid #762B00;
   background-color: #FFA93B;
 }
-.sidebar ul li a{
+.sidebar .menu .item-menu a .ico-submenu{
+  position: absolute;
+  margin: 2%;
+  margin-left: 10%;
+}
+.sidebar .menu .item-menu .submenu{
+  background-color:  rgb(118, 43, 0,0.3);
+  display: none;
+}
+.sidebar .menu .item-menu .submenu li{
   text-decoration: none;
   color: #FFFFE2;
-  display: inline-block;
+  display: block;
+  padding: 0.5em;
+  margin: 2%;
+}
+.sidebar .menu .item-menu .submenu a{
+  padding-left: 10%;
+}
+.submenu.hide {
+  display: block !important;
+  transition: 0.3s ease-out;
+}
+.rotate{
+  transform: rotate(90deg);
 }
 /* fin sidebar =========================================== */
 
