@@ -22,6 +22,7 @@ class User extends Authenticatable
         'segundo_nom',
         'primer_ape',
         'segundo_ape',
+        'cedula',
         'email',
         'edad',
         'fecha_nac',
