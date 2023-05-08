@@ -115,9 +115,11 @@ class UserController extends Controller
             DB::beginTransaction();
             User::where('id',$request->id)->delete();
             DB::commit();
+            Alert::success('Eliminado!', 'Usuario eliminado correctamente');
         } catch (\Throwable $th) {
             DB::rollBack();
-            dd($th);
+            Alert::error('¡Error!', 'No se pudo eliminar el usuario');
+            // dd($th);
             return back();
         }
 

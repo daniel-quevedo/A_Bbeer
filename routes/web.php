@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,7 +22,8 @@ Route::get('/', function () {
 
 Route::get('/inicio', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware('auth')->name('dashboard');
+// ->middleware(['auth', 'verified'])->name('dashboard');
 
 // Route::get('/home',[])->name('home');
 
@@ -38,8 +40,14 @@ Route::middleware('auth')->group(function () {
         Route::post('usuarios/editados', 'showEdit')->name('admin.users.showEdit');
         Route::post('usuarios/eliminar', 'delete')->name('admin.users.delete');
     });
-
-
+    Route::controller(CityController::class)->group(function() {
+        Route::get('ciudades', 'index')->name('admin.city.index');
+        Route::get('ciudades/agregar', 'store')->name('admin.city.store');
+        Route::post('ciudades/agregadas', 'add')->name('admin.city.add');
+        Route::post('ciudades/editar', 'edit')->name('admin.city.edit');
+        Route::post('ciudades/editadas', 'showEdit')->name('admin.city.showEdit');
+        Route::post('ciudades/eliminar', 'delete')->name('admin.city.delete');
+    });
 });
 
 require __DIR__.'/auth.php';

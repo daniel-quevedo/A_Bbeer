@@ -47,7 +47,7 @@
       </div>
       <div class="menu">
         <div class="item-menu">
-          <a href="">
+          <a href="{{ route('dashboard') }}">
             <i class="icon-sidebar fa-lg fa-solid fa-house"></i>
             <span class="txt_links">Inicio</span>
           </a>
@@ -59,7 +59,7 @@
             <i class="fa-solid fa-angle-right ico-submenu" id="ico-submenu"></i>
           </a>
           <div class="submenu">
-            <a href="" class="sub-item">
+            <a href="{{ route('admin.city.index') }}" class="sub-item">
               <i class="icon-sidebar fa-solid fa-city"></i>
               <span class="txt_links">Ciudad</span>
             </a>
