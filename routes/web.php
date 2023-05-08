@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CityController;
+use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -47,6 +48,14 @@ Route::middleware('auth')->group(function () {
         Route::post('ciudades/editar', 'edit')->name('admin.city.edit');
         Route::post('ciudades/editadas', 'showEdit')->name('admin.city.showEdit');
         Route::post('ciudades/eliminar', 'delete')->name('admin.city.delete');
+    });
+    Route::controller(CountryController::class)->group(function() {
+        Route::get('paises', 'index')->name('admin.country.index');
+        Route::get('paises/agregar', 'store')->name('admin.country.store');
+        Route::post('paises/agregados', 'add')->name('admin.country.add');
+        Route::post('paises/editar', 'edit')->name('admin.country.edit');
+        Route::post('paises/editados', 'showEdit')->name('admin.country.showEdit');
+        Route::post('paises/eliminar', 'delete')->name('admin.country.delete');
     });
 });
 

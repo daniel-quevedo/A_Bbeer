@@ -63,17 +63,17 @@
               <i class="icon-sidebar fa-solid fa-city"></i>
               <span class="txt_links">Ciudad</span>
             </a>
-            <a href="" class="sub-item">
+            <a href="{{ route('admin.country.index') }}" class="sub-item">
               <i class="icon-sidebar fa-solid fa-earth-americas"></i>
-              <span class="txt_links">Pais</span>
-            </a>
-            <a href="" class="sub-item">
-              <i class="icon-sidebar fa-solid fa-clipboard"></i>
-              <span class="txt_links">Mesa</span>
+              <span class="txt_links">País</span>
             </a>
             <a href="{{ route('admin.users.index') }}" class="sub-item">
               <i class="icon-sidebar fa-solid fa-users"></i>
               <span class="txt_links">Usuarios</span>
+            </a>
+            <a href="" class="sub-item">
+              <i class="icon-sidebar fa-solid fa-clipboard"></i>
+              <span class="txt_links">Mesa</span>
             </a>
             <a href="" class="sub-item">
               <i class="icon-sidebar fa-solid fa-dolly"></i>

@@ -11,8 +11,9 @@ class Country extends Model
 
     protected $table = 'pais';
 
+    protected $primaryKey = 'idPais';
+
     protected $fillable = [
-        'idPais',
-        'pais'
+        'pais',
     ];
 }
