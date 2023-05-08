@@ -8,10 +8,11 @@
   <script src="{{ asset('bootstrap/js/bootstrap.bundle.min.js') }}"></script>
   <link rel="stylesheet" href="{{ asset('css/style.css') }}">
   <script src="{{ asset('fontawesome/js/all.min.js') }}"></script>
+  @yield('links')
   <title>@yield('título','Inicio')</title>
 </head>
 <body>
-  <div class="header">
+  <header>
     <div class="d-flex justify-content-between">
       <div class="menu">
         <a href="javascript:void(0)" onclick="optSidebar()">
@@ -35,7 +36,7 @@
         </ul>
       </div>
     </div>
-  </div>
+  </header>
   <section>
     <div class="sidebar" id="sidebar">
       <div class="info" id="info">
@@ -59,10 +60,6 @@
           </a>
           <div class="submenu">
             <a href="" class="sub-item">
-              <i class="icon-sidebar fa-solid fa-users"></i>
-              <span class="txt_links">Usuarios</span>
-            </a>
-            <a href="" class="sub-item">
               <i class="icon-sidebar fa-solid fa-city"></i>
               <span class="txt_links">Ciudad</span>
             </a>
@@ -73,6 +70,10 @@
             <a href="" class="sub-item">
               <i class="icon-sidebar fa-solid fa-clipboard"></i>
               <span class="txt_links">Mesa</span>
+            </a>
+            <a href="{{ route('admin.users.index') }}" class="sub-item">
+              <i class="icon-sidebar fa-solid fa-users"></i>
+              <span class="txt_links">Usuarios</span>
             </a>
             <a href="" class="sub-item">
               <i class="icon-sidebar fa-solid fa-dolly"></i>
@@ -98,6 +99,7 @@
       @yield('content')
     </main>
   </section>
+  @include('sweetalert::alert')
   <script>
     const submenu = document.querySelector('.submenu');
     const parentMenu = document.querySelector('.sidebar .item-menu:nth-child(2)');

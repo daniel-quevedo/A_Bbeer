@@ -7,7 +7,7 @@ body{
   background-color: #FFFFE2;
 }
 
-.sidebar::-webkit-scrollbar{
+div::-webkit-scrollbar , body::-webkit-scrollbar , .sidebar::-webkit-scrollbar{
   width: 1px;
 }
 
@@ -25,28 +25,30 @@ body{
   margin-right: 1.5em;
 }
 
-.header{
-  position: relative;
+header{
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
   z-index: 100;
   padding: 0.5em;
   border-bottom: 1px solid #250001;
   background-color: #250001;
 }
-.header a, .header a:hover{
+header a, header a:hover{
   text-decoration: none;
   color: #FFFFE2;
 }
-.header .menu a{
+header .menu a{
   text-decoration: none;
   font-size: 1.5em;
   color: #FFFFE2;
 }
-.header .menu span{
+header .menu span{
   font-size: 1.5em;
   margin-left: 1.5em;
   color: #FFFFE2;
 }
-.header .dropdown span{
+header .dropdown span{
   cursor: pointer;
   margin-left: 1em;
 }
@@ -135,4 +137,17 @@ main{
   margin-left: 17%;
   transition: margin-left 0.3s;
   padding: 20px;
+}
+
+.bgDark{
+  background-color: #250001;
+  color: #FFFFE2;
+}
+.bgLight{
+  background-color: #FFA93B;
+  color: #FFFFE2;
+}
+.bgCenter{
+  background-color: #762B00;
+  color: #FFFFE2;
 }
