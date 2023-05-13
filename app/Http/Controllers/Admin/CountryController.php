@@ -40,7 +40,6 @@ class CountryController extends Controller
     {
         $countryEdit = Country::find($request->id);
         return view('administrator.country_edit',compact('countryEdit'));
-
     }
     public function edit(Request $request)
     {

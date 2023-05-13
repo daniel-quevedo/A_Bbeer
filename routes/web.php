@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\CountryController;
+use App\Http\Controllers\Admin\MesaController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -56,6 +57,14 @@ Route::middleware('auth')->group(function () {
         Route::post('paises/editar', 'edit')->name('admin.country.edit');
         Route::post('paises/editados', 'showEdit')->name('admin.country.showEdit');
         Route::post('paises/eliminar', 'delete')->name('admin.country.delete');
+    });
+    Route::controller(MesaController::class)->group(function() {
+        Route::get('mesas', 'index')->name('admin.mesa.index');
+        Route::get('mesas/agregar', 'store')->name('admin.mesa.store');
+        Route::post('mesas/agregadas', 'add')->name('admin.mesa.add');
+        Route::post('mesas/editar', 'edit')->name('admin.mesa.edit');
+        Route::post('mesas/editadas', 'showEdit')->name('admin.mesa.showEdit');
+        Route::post('mesas/eliminar', 'delete')->name('admin.mesa.delete');
     });
 });
 
