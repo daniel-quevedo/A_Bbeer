@@ -11,7 +11,9 @@ function optSidebar() {
     document.getElementById('img_info').style.marginTop = '20px';
     document.getElementById('img_info').style.marginBottom = '20px';
     document.getElementById('text_info').style.display = 'none';
-    document.getElementById('ico-submenu').style.display = 'none';
+    if (document.getElementById('ico-submenu') != null) {
+      document.getElementById('ico-submenu').style.display = 'none';
+    }
     for (let i = links.length -1 ; i >= 0; i--) {
       links[i].style.display = 'none';
     }
@@ -22,6 +24,9 @@ function optSidebar() {
     document.getElementById('img_info').style.width = '10em';
     document.getElementById('img_info').style.height = '9.7em';
     document.getElementById('text_info').style.display = 'block';
+    if (document.getElementById('ico-submenu') != null) {
+      document.getElementById('ico-submenu').style.display = 'initial';
+    }
     for (let i = links.length -1 ; i >= 0; i--) {
       links[i].style.display = 'inline';
     }

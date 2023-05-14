@@ -10,7 +10,7 @@
       </div>
       <div class="mb-3 col-6">
         <label for="" class="form-label">Segundo nombre</label>
-        <input type="text" class="form-control" name="segundo_nom" required>
+        <input type="text" class="form-control" name="segundo_nom">
       </div>
     </div>
     <div class="col-12 row">

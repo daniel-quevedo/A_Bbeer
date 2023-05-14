@@ -22,7 +22,7 @@ div::-webkit-scrollbar , body::-webkit-scrollbar , .sidebar::-webkit-scrollbar{
 }
 
 .icon-sidebar{
-  margin-right: 1.5em;
+  margin-right: 30px;
 }
 
 header{

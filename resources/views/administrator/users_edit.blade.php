@@ -21,7 +21,7 @@
       </div>
       <div class="mb-3 col-6">
         <label for="" class="form-label">Segundo apellido</label>
-        <input type="text" class="form-control" name="segundo_ape" value="{{ $userEdit->segundo_ape }}" required>
+        <input type="text" class="form-control" name="segundo_ape" value="{{ $userEdit->segundo_ape }}">
       </div>
     </div>
     <div class="col-12 row">
