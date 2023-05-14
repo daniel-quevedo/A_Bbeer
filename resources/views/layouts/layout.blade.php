@@ -54,35 +54,49 @@
             <span class="txt_links">Inicio</span>
           </a>
         </div>
-        <div class="item-menu">
-          <a>
-            <i class="icon-sidebar fa-lg fa-solid fa-list"></i>
-            <span class="txt_links">Parametrización</span>
-            <i class="fa-solid fa-angle-right ico-submenu" id="ico-submenu"></i>
-          </a>
-          <div class="submenu">
-            <a href="{{ route('admin.city.index') }}" class="sub-item">
-              <i class="icon-sidebar fa-solid fa-city"></i>
-              <span class="txt_links">Ciudad</span>
+        @if (Auth::user()->id_rol == 1)
+          <div class="item-menu">
+            <a>
+              <i class="icon-sidebar fa-lg fa-solid fa-list"></i>
+              <span class="txt_links">Parametrización</span>
+              <i class="fa-solid fa-angle-right ico-submenu" id="ico-submenu"></i>
             </a>
-            <a href="{{ route('admin.country.index') }}" class="sub-item">
-              <i class="icon-sidebar fa-solid fa-earth-americas"></i>
-              <span class="txt_links">País</span>
-            </a>
-            <a href="{{ route('admin.users.index') }}" class="sub-item">
-              <i class="icon-sidebar fa-solid fa-users"></i>
-              <span class="txt_links">Usuarios</span>
-            </a>
-            <a href="{{ route('admin.mesa.index') }}" class="sub-item">
-              <i class="icon-sidebar fa-solid fa-clipboard"></i>
-              <span class="txt_links">Mesa</span>
-            </a>
-            <a href="" class="sub-item">
-              <i class="icon-sidebar fa-solid fa-dolly"></i>
-              <span class="txt_links">Productos</span>
+            <div class="submenu">
+              <a href="{{ route('admin.city.index') }}" class="sub-item">
+                <i class="icon-sidebar fa-solid fa-city"></i>
+                <span>Ciudad</span>
+              </a>
+              <a href="{{ route('admin.country.index') }}" class="sub-item">
+                <i class="icon-sidebar fa-solid fa-earth-americas"></i>
+                <span>País</span>
+              </a>
+              <a href="{{ route('admin.users.index') }}" class="sub-item">
+                <i class="icon-sidebar fa-solid fa-users"></i>
+                <span>Usuarios</span>
+              </a>
+              <a href="{{ route('admin.mesa.index') }}" class="sub-item">
+                <i class="icon-sidebar fa-solid fa-clipboard"></i>
+                <span>Mesa</span>
+              </a>
+              <a href="{{ route('admin.typeProduct.index') }}" class="sub-item">
+                <i class="icon-sidebar fa-solid fa-barcode"></i>
+                <span>Tipo de Productos</span>
+              </a>
+              <a href="{{ route('admin.product.index') }}" class="sub-item">
+                <i class="icon-sidebar fa-solid fa-cart-shopping"></i>
+                <span>Productos</span>
+              </a>
+            </div>
+          </div>
+        @endif
+        @if (Auth::user()->id_rol == 2 || Auth::user()->id_rol == 1)
+          <div class="item-menu">
+            <a href="{{ route('dashboard') }}">
+              <i class="icon-sidebar fa-solid fa-truck-ramp-box"></i>
+              <span class="txt_links">Inventario</span>
             </a>
           </div>
-        </div>
+        @endif
         <div class="item-menu">
           <a href="">
             <i class="icon-sidebar fa-lg fa-solid fa-folder-open"></i>
@@ -90,7 +104,7 @@
           </a>
         </div>
         <div class="item-menu">
-          <a href="">
+          <a href="{{ route('profile.edit') }}">
             <i class="icon-sidebar fa-lg fa-solid fa-screwdriver-wrench"></i>
             <span class="txt_links">Configuración</span>
           </a>

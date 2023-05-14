@@ -4,6 +4,8 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\Admin\MesaController;
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\TypeProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -65,6 +67,22 @@ Route::middleware('auth')->group(function () {
         Route::post('mesas/editar', 'edit')->name('admin.mesa.edit');
         Route::post('mesas/editadas', 'showEdit')->name('admin.mesa.showEdit');
         Route::post('mesas/eliminar', 'delete')->name('admin.mesa.delete');
+    });
+    Route::controller(TypeProductController::class)->group(function() {
+        Route::get('tipo/productos', 'index')->name('admin.typeProduct.index');
+        Route::get('tipo/productos/agregar', 'store')->name('admin.typeProduct.store');
+        Route::post('tipo/productos/agregados', 'add')->name('admin.typeProduct.add');
+        Route::post('tipo/productos/editar', 'edit')->name('admin.typeProduct.edit');
+        Route::post('tipo/productos/editados', 'showEdit')->name('admin.typeProduct.showEdit');
+        Route::post('tipo/productos/eliminar', 'delete')->name('admin.typeProduct.delete');
+    });
+    Route::controller(ProductController::class)->group(function() {
+        Route::get('productos', 'index')->name('admin.product.index');
+        Route::get('productos/agregar', 'store')->name('admin.product.store');
+        Route::post('productos/agregados', 'add')->name('admin.product.add');
+        Route::post('productos/editar', 'edit')->name('admin.product.edit');
+        Route::post('productos/editados', 'showEdit')->name('admin.product.showEdit');
+        Route::post('productos/eliminar', 'delete')->name('admin.product.delete');
     });
 });
 
