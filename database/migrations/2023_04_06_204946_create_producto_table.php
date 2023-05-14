@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('producto', function (Blueprint $table) {
             $table->id('idProducto');
-            $table->char('cod_producto')->unique();
-            $table->char('producto',80);
+            $table->string('cod_producto')->unique();
+            $table->string('producto',80);
             $table->integer('costo_venta_producto');
             $table->integer('costo_producto');
             $table->integer('id_tipoProducto')->nullable();

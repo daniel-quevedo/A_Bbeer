@@ -18,7 +18,10 @@ class DatabaseSeeder extends Seeder
         $this->call(CitySeeder::class);
         $this->call(HeadquartersSeeder::class);
         $this->call(TypeProductSeeder::class);
-        $this->call(UserAdminSeeder::class);
+        $this->call(ProductSeeder::class);
+        $this->call(InventarySeeder::class);
+        $this->call(MesaSeeder::class);
+        $this->call(UsersSeeder::class);
 
         // \App\Models\User::factory(10)->create();
 
