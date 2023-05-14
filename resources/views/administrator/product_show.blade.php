@@ -1,5 +1,7 @@
 @extends('layouts.layout')
 
+@section('título','Producto')
+
 @section('content')
   <div class="col-12">
     <a href="{{ route('admin.product.store') }}" class="btn btn-outline-success">Agregar Producto</a>

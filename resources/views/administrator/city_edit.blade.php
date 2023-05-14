@@ -1,5 +1,7 @@
 @extends('layouts.layout')
 
+@section('título','Ciudad')
+
 @section('content')
   <form action="{{ route('admin.city.edit') }}" method="post">
     @csrf

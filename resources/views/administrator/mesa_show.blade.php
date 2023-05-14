@@ -1,5 +1,7 @@
 @extends('layouts.layout')
 
+@section('título','Mesa')
+
 @section('content')
   <div class="col-12">
     <a href="{{ route('admin.mesa.store') }}" class="btn btn-outline-success">Agregar Mesa</a>

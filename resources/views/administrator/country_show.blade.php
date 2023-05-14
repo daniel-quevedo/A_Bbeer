@@ -1,5 +1,7 @@
 @extends('layouts.layout')
 
+@section('título','País')
+
 @section('content')
   <div class="col-12">
     <a href="{{ route('admin.country.store') }}" class="btn btn-outline-success">Agregar Paises</a>

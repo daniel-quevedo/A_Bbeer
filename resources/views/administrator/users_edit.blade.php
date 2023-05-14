@@ -1,5 +1,7 @@
 @extends('layouts.layout')
 
+@section('título','Usuarios')
+
 @section('content')
   <form action="{{ route('admin.users.edit') }}" method="post">
     @csrf

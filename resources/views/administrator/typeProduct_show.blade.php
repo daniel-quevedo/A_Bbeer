@@ -1,5 +1,7 @@
 @extends('layouts.layout')
 
+@section('título','Tipo producto')
+
 @section('content')
   <div class="col-12">
     <a href="{{ route('admin.typeProduct.store') }}" class="btn btn-outline-success">Agregar Tipo de productos</a>

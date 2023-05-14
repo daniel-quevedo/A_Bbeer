@@ -1,5 +1,7 @@
 @extends('layouts.layout')
 
+@section('título','Tipo producto')
+
 @section('content')
   <form action="{{ route('admin.typeProduct.add') }}" method="post">
     @csrf

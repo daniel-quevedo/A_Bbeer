@@ -1,5 +1,7 @@
 @extends('layouts.layout')
 
+@section('título','Usuarios')
+
 @section('content')
   <div class="col-12">
     <a href="{{ route('admin.users.store') }}" class="btn btn-outline-success">Agregar Usuarios</a>

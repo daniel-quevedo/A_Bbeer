@@ -1,5 +1,7 @@
 @extends('layouts.layout')
 
+@section('título','Mesa')
+
 @section('content')
   <form action="{{ route('admin.mesa.edit') }}" method="post">
     @csrf
