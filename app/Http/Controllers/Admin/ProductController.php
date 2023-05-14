@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Inventary;
 use App\Models\Product;
 use App\Models\TypeProduct;
 use Illuminate\Http\Request;
@@ -34,12 +35,18 @@ class ProductController extends Controller
             $table->costo_producto = $request->costo_producto;
             $table->id_tipoProducto = $request->id_tipoProducto;
             $table->save();
+
+            $table2 = new Inventary();
+            $table2->cantidad = 1;
+            $table2->id_producto = $table->idProducto;
+            $table2->estado = true;
+            $table2->save();
             DB::commit();
             Alert::success('¡Agregado!', 'Producto agregado correctamente');
         } catch (\Throwable $th) {
             DB::rollBack();
             Alert::error('¡Error!', 'No se pudo agregar el producto');
-            // dd($th);
+            dd($th);
             return back();
         }
         return redirect()->route('admin.product.index');

@@ -4,8 +4,10 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\Admin\MesaController;
+use App\Http\Controllers\Admin\HeadquarterController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\TypeProductController;
+use App\Http\Controllers\Admin\InventaryController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -68,6 +70,14 @@ Route::middleware('auth')->group(function () {
         Route::post('mesas/editadas', 'showEdit')->name('admin.mesa.showEdit');
         Route::post('mesas/eliminar', 'delete')->name('admin.mesa.delete');
     });
+    Route::controller(HeadquarterController::class)->group(function() {
+        Route::get('sedes', 'index')->name('admin.headquarter.index');
+        Route::get('sedes/agregar', 'store')->name('admin.headquarter.store');
+        Route::post('sedes/agregadas', 'add')->name('admin.headquarter.add');
+        Route::post('sedes/editar', 'edit')->name('admin.headquarter.edit');
+        Route::post('sedes/editadas', 'showEdit')->name('admin.headquarter.showEdit');
+        Route::post('sedes/eliminar', 'delete')->name('admin.headquarter.delete');
+    });
     Route::controller(TypeProductController::class)->group(function() {
         Route::get('tipo/productos', 'index')->name('admin.typeProduct.index');
         Route::get('tipo/productos/agregar', 'store')->name('admin.typeProduct.store');
@@ -83,6 +93,14 @@ Route::middleware('auth')->group(function () {
         Route::post('productos/editar', 'edit')->name('admin.product.edit');
         Route::post('productos/editados', 'showEdit')->name('admin.product.showEdit');
         Route::post('productos/eliminar', 'delete')->name('admin.product.delete');
+    });
+    Route::controller(InventaryController::class)->group(function() {
+        Route::get('inventarios', 'index')->name('inventary.index');
+        Route::get('inventarios/agregar', 'store')->name('inventary.store');
+        Route::post('inventarios/agregados', 'add')->name('inventary.add');
+        Route::post('inventarios/editar', 'edit')->name('inventary.edit');
+        Route::post('inventarios/editados', 'showEdit')->name('inventary.showEdit');
+        Route::post('inventarios/eliminar', 'delete')->name('inventary.delete');
     });
 });
 

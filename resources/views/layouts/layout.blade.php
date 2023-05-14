@@ -95,7 +95,7 @@
         @endif
         @if (Auth::user()->id_rol == 2 || Auth::user()->id_rol == 1)
           <div class="item-menu">
-            <a href="{{ route('dashboard') }}">
+            <a href="{{ route('inventary.index') }}">
               <i class="icon-sidebar fa-solid fa-truck-ramp-box"></i>
               <span class="txt_links">Inventario</span>
             </a>

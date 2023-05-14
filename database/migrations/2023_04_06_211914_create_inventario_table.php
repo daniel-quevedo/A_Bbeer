@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id('idInventario');
             $table->integer('cantidad');
             $table->integer('id_producto');
-            $table->boolean('estado');
             $table->timestamps();
         });
     }
