@@ -82,7 +82,7 @@
         <label for="" class="form-label">Sede</label>
         <select name="id_sede" class="form-control" required>
           <option value="" selected disabled>Seleccione...</option>
-          @foreach ($sede as $item)
+          @foreach ($headquarter as $item)
               <option value="{{ $item->idSede }}">{{ $item->sede }}</option>
           @endforeach
         </select>

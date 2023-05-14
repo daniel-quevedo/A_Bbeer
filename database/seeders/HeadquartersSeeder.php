@@ -13,7 +13,7 @@ class HeadquartersSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('sede')->insert(
+        DB::table('sede')->insert([
             [
                 'sede' => '1ra sede Bogota',
                 'created_at' => now(),
@@ -29,6 +29,6 @@ class HeadquartersSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ]
-        );
+        ]);
     }
 }

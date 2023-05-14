@@ -7,7 +7,7 @@ use App\Models\City;
 use App\Models\Country;
 use App\Models\Gender;
 use App\Models\Rol;
-use App\Models\Sede;
+use App\Models\Headquarter;
 use App\Models\User;
 use Carbon\Carbon;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -34,9 +34,9 @@ class UserController extends Controller
         $gender = Gender::all();
         $country = Country::all();
         $city = City::all();
-        $sede = Sede::all();
+        $headquarter = Headquarter::all();
 
-        return view('administrator.users_add',compact('rol','gender','country','city','sede'));
+        return view('administrator.users_add',compact('rol','gender','country','city','headquarter'));
     }
     public function add(Request $request)
     {
@@ -73,9 +73,9 @@ class UserController extends Controller
         $gender = Gender::all();
         $country = Country::all();
         $city = City::all();
-        $sede = Sede::all();
+        $headquarter = Headquarter::all();
         $userEdit = User::find($request->id);
-        return view('administrator.users_edit',compact('rol','gender','country','city','sede','userEdit'));
+        return view('administrator.users_edit',compact('rol','gender','country','city','headquarter','userEdit'));
 
     }
     public function edit(Request $request)

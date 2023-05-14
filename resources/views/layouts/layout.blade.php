@@ -78,6 +78,10 @@
                 <i class="icon-sidebar fa-solid fa-clipboard"></i>
                 <span>Mesa</span>
               </a>
+              <a href="{{ route('admin.headquarter.index') }}" class="sub-item">
+                <i class="icon-sidebar fa-solid fa-building-flag"></i>
+                <span>Sede</span>
+              </a>
               <a href="{{ route('admin.typeProduct.index') }}" class="sub-item">
                 <i class="icon-sidebar fa-solid fa-barcode"></i>
                 <span>Tipo de Productos</span>

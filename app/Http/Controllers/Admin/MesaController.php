@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\City;
 use App\Models\Country;
 use App\Models\Mesa;
-use App\Models\Sede;
+use App\Models\Headquarter;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -25,10 +25,10 @@ class MesaController extends Controller
 
     public function store(Request $request)
     {
-        $sede = Sede::all();
+        $headquarter = Headquarter::all();
         $city = City::all();
         $country = Country::all();
-        return view('administrator.mesa_add',compact('sede','city','country'));
+        return view('administrator.mesa_add',compact('headquarter','city','country'));
     }
 
     public function add(Request $request)
@@ -55,10 +55,10 @@ class MesaController extends Controller
     public function showEdit(Request $request)
     {
         $mesaEdit = Mesa::find($request->id);
-        $sede = Sede::all();
+        $headquarter = Headquarter::all();
         $city = City::all();
         $country = Country::all();
-        return view('administrator.mesa_edit',compact('mesaEdit','sede','city','country'));
+        return view('administrator.mesa_edit',compact('mesaEdit','headquarter','city','country'));
     }
 
     public function edit(Request $request)
