@@ -6,7 +6,7 @@
   <div class="col-12">
     <a href="{{ route('admin.city.store') }}" class="btn btn-outline-success">Agregar Ciudades</a>
   </div>
-  <div class="mt-5">
+  <div class="mt-5 table-responsive">
     <table class="table table-sm table-striped" id="table-city">
       <thead class="table-light">
         <tr>
@@ -45,8 +45,8 @@
         language: {
           url: 'https://cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json',
         },
-        "lengthMenu": [ 3, 5, 10, 50, 100 ],
-        pageLength: 3,
+        "lengthMenu": [ 5, 10, 50, 100 ],
+        pageLength: 5,
       });
     });
   </script>

@@ -8,7 +8,16 @@ body{
 }
 
 div::-webkit-scrollbar , body::-webkit-scrollbar , .sidebar::-webkit-scrollbar{
-  width: 1px;
+  width: 2px;
+}
+
+div::-webkit-scrollbar:horizontal , body::-webkit-scrollbar:horizontal , .sidebar::-webkit-scrollbar:horizontal{
+  height: 4px;
+}
+div::-webkit-scrollbar-thumb , body::-webkit-scrollbar-thumb , .sidebar::-webkit-scrollbar-thumb{
+  background-color: red;
+  border-radius: 20px;
+  border: 2px solid #000;
 }
 
 .bgLogin{
