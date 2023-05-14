@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id('idProducto');
             $table->char('cod_producto')->unique();
             $table->char('producto',80);
-            $table->integer('costo');
+            $table->integer('costo_venta_producto');
+            $table->integer('costo_producto');
             $table->integer('id_tipoProducto')->nullable();
             $table->timestamps();
         });
