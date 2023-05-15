@@ -31,6 +31,7 @@ class User extends Authenticatable
         'id_pais',
         'id_ciudad',
         'id_sede',
+        'foto_perfil',
         'password',
     ];
 

@@ -26,6 +26,7 @@ return new class extends Migration
             $table->integer('id_pais')->nullable();
             $table->integer('id_ciudad')->nullable();
             $table->integer('id_sede')->nullable();
+            $table->string('foto_perfil')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

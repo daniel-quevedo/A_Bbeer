@@ -12,5 +12,16 @@
 @endsection
 @section('scripts')
   <script>
+    const fileInput = document.getElementById('foto_perfil');
+    fileInput.addEventListener('change', function() {
+      const file = fileInput.files[0];
+      const fileType = file.type;
+      const validImageTypes = /image\/.*/;
+
+      if (!validImageTypes.test(fileType)) {
+        alert('Por favor, seleccione un archivo de imagen válido.');
+        fileInput.value = ''; // Limpia el campo de entrada de archivo
+      }
+    });
   </script>
 @endsection

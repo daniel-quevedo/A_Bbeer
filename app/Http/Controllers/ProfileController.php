@@ -29,11 +29,16 @@ class ProfileController extends Controller
      */
     public function update(Request $request)
     {
-        // dd($request);
         try {
             DB::beginTransaction();
 
             $table = User::find(Auth::user()->id);
+            if ($request->hasFile('foto_perfil')) {
+                $photo = $request->file('foto_perfil');
+                $nameFile = strtotime(date('Y/m/d H:m:s')).$photo->getClientOriginalName();
+                $photo->move(public_path().'/photos/',$nameFile);
+                $table->foto_perfil = $nameFile;
+            }
             $table->primer_nom = $request->primer_nom;
             $table->segundo_nom = $request->segundo_nom;
             $table->primer_ape = $request->primer_ape;
@@ -48,6 +53,7 @@ class ProfileController extends Controller
         } catch (\Throwable $th) {
             DB::rollBack();
             Alert::error('¡Error!','No se pudo actualizar los datos');
+            dd($th);
             return back();
         }
         Alert::success('¡Actualizado!','Haz actualizado tus datos correctamente');

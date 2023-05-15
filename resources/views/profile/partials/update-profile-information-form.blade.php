@@ -7,7 +7,7 @@
       </p>
     </div>
     <div class="card-body">
-      <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
+      <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6" enctype="multipart/form-data">
         @csrf
         <div class="col-12 row">
           <div class="form-group col-6">
@@ -52,6 +52,12 @@
           <div class="form-group col-6">
             <label for="" class="form-label">Cédula</label>
             <input type="text" name="cedula" class="form-control" value="{{ old('cedula', $user->cedula) }}">
+          </div>
+        </div>
+        <div class="col-12 row mt-5">
+          <div class="form-group">
+            <label for="" class="form-label">Foto de perfil</label>
+            <input type="file" name="foto_perfil" id="foto_perfil" class="form-control" accept="image/*">
           </div>
         </div>
         <div class="mt-3 col-12">
