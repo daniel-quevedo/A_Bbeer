@@ -7,7 +7,7 @@ use App\Http\Controllers\Admin\MesaController;
 use App\Http\Controllers\Admin\HeadquarterController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\TypeProductController;
-use App\Http\Controllers\Admin\InventaryController;
+use App\Http\Controllers\InventaryController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,12 +31,9 @@ Route::get('/inicio', function () {
 })->middleware('auth')->name('dashboard');
 // ->middleware(['auth', 'verified'])->name('dashboard');
 
-// Route::get('/home',[])->name('home');
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::controller(UserController::class)->group(function() {
         Route::get('usuarios', 'index')->name('admin.users.index');

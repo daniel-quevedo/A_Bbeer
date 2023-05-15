@@ -42,10 +42,6 @@ class InventarySeeder extends Seeder
                 'cantidad' => '1',
                 'id_producto' => '7',
             ],
-            [
-                'cantidad' => '1',
-                'id_producto' => '1',
-            ],
         ]);
     }
 }

@@ -25,9 +25,6 @@
                   <div class="col-6">
                     <button class="btn btn-sm btn-primary"><i class="fa-solid fa-pen-to-square"></i></button>
                   </div>
-                  <div class="col-6">
-                    <button formaction="{{ route('inventary.delete') }}" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i></button>
-                  </div>
                 </div>
               </form>
             </td>

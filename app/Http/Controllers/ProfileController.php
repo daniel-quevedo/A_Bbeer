@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -45,6 +46,7 @@ class ProfileController extends Controller
             $table->segundo_ape = $request->segundo_ape;
             $table->email = $request->email;
             $table->fecha_nac = $request->fecha_nac;
+            $table->edad = Carbon::parse($request->fecha_nac)->age;
             $table->id_genero = $request->genero;
             $table->cedula = $request->cedula;
             $table->save();
@@ -58,26 +60,5 @@ class ProfileController extends Controller
         }
         Alert::success('¡Actualizado!','Haz actualizado tus datos correctamente');
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
-    }
-
-    /**
-     * Delete the user's account.
-     */
-    public function destroy(Request $request): RedirectResponse
-    {
-        $request->validateWithBag('userDeletion', [
-            'password' => ['required', 'current_password'],
-        ]);
-
-        $user = $request->user();
-
-        Auth::logout();
-
-        $user->delete();
-
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-
-        return Redirect::to('/');
     }
 }

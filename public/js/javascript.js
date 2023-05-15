@@ -4,10 +4,10 @@ function optSidebar() {
   let links = document.getElementsByClassName('txt_links');
 
   if (estado == 'open') {
-    document.getElementById('sidebar').style.width = '3%';
+    document.getElementById('sidebar').style.width = '4%';
     document.getElementById('main').style.marginLeft = '4%';
-    document.getElementById('img_info').style.width = '30px';
-    document.getElementById('img_info').style.height = '30px';
+    document.getElementById('img_info').style.width = '34px';
+    document.getElementById('img_info').style.height = '34px';
     document.getElementById('img_info').style.marginTop = '20px';
     document.getElementById('img_info').style.marginBottom = '20px';
     document.getElementById('text_info').style.display = 'none';
