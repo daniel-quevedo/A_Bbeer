@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ProfileController extends Controller
 {
@@ -24,16 +27,30 @@ class ProfileController extends Controller
     /**
      * Update the user's profile information.
      */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
+    public function update(Request $request)
     {
-        $request->user()->fill($request->validated());
+        // dd($request);
+        try {
+            DB::beginTransaction();
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+            $table = User::find(Auth::user()->id);
+            $table->primer_nom = $request->primer_nom;
+            $table->segundo_nom = $request->segundo_nom;
+            $table->primer_ape = $request->primer_ape;
+            $table->segundo_ape = $request->segundo_ape;
+            $table->email = $request->email;
+            $table->fecha_nac = $request->fecha_nac;
+            $table->id_genero = $request->genero;
+            $table->cedula = $request->cedula;
+            $table->save();
+
+            DB::commit();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            Alert::error('¡Error!','No se pudo actualizar los datos');
+            return back();
         }
-
-        $request->user()->save();
-
+        Alert::success('¡Actualizado!','Haz actualizado tus datos correctamente');
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 

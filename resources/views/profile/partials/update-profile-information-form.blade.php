@@ -1,64 +1,63 @@
 <section>
-    <header>
-        <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-            {{ __('Profile Information') }}
-        </h2>
-
-        <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-            {{ __("Update your account's profile information and email address.") }}
-        </p>
-    </header>
-
-    <form id="send-verification" method="post" action="{{ route('verification.send') }}">
+  <div class="card">
+    <div class="card-header">
+      <h2>Mis Datos</h2>
+      <p class="mt-1 text-sm text-secondary">
+        Actualiza tus datos básicos aquí
+      </p>
+    </div>
+    <div class="card-body">
+      <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
         @csrf
-    </form>
-
-    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
-        @csrf
-        @method('patch')
-
-        <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
-            <x-input-error class="mt-2" :messages="$errors->get('name')" />
+        <div class="col-12 row">
+          <div class="form-group col-6">
+            <label for="" class="form-label">Primer nombre</label>
+            <input type="text" name="primer_nom" class="form-control" value="{{ old('primer_nom', $user->primer_nom) }}" required>
+          </div>
+          <div class="form-group col-6">
+            <label for="" class="form-label">Segundo nombre</label>
+            <input type="text" name="segundo_nom" class="form-control" value="{{ old('segundo_nom', $user->segundo_nom) }}">
+          </div>
         </div>
-
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)" required autocomplete="username" />
-            <x-input-error class="mt-2" :messages="$errors->get('email')" />
-
-            @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
-                <div>
-                    <p class="text-sm mt-2 text-gray-800 dark:text-gray-200">
-                        {{ __('Your email address is unverified.') }}
-
-                        <button form="send-verification" class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">
-                            {{ __('Click here to re-send the verification email.') }}
-                        </button>
-                    </p>
-
-                    @if (session('status') === 'verification-link-sent')
-                        <p class="mt-2 font-medium text-sm text-green-600 dark:text-green-400">
-                            {{ __('A new verification link has been sent to your email address.') }}
-                        </p>
-                    @endif
-                </div>
-            @endif
+        <div class="col-12 row">
+          <div class="form-group col-6">
+            <label for="" class="form-label">Primer apellido</label>
+            <input type="text" name="primer_ape" class="form-control" value="{{ old('primer_ape', $user->primer_ape) }}" required>
+          </div>
+          <div class="form-group col-6">
+            <label for="" class="form-label">Segundo apellido</label>
+            <input type="text" name="segundo_ape" class="form-control" value="{{ old('segundo_ape', $user->segundo_ape) }}" required>
+          </div>
         </div>
-
-        <div class="flex items-center gap-4">
-            <x-primary-button>{{ __('Save') }}</x-primary-button>
-
-            @if (session('status') === 'profile-updated')
-                <p
-                    x-data="{ show: true }"
-                    x-show="show"
-                    x-transition
-                    x-init="setTimeout(() => show = false, 2000)"
-                    class="text-sm text-gray-600 dark:text-gray-400"
-                >{{ __('Saved.') }}</p>
-            @endif
+        <div class="col-12 row">
+          <div class="form-group col-6">
+            <label for="" class="form-label">Correo electrónico</label>
+            <input type="text" name="email" class="form-control" value="{{ old('email', $user->email) }}" required>
+          </div>
+          <div class="form-group col-6">
+            <label for="" class="form-label">Fecha de nacimiento</label>
+            <input type="date" name="fecha_nac" class="form-control" value="{{ old('fecha_nac', $user->fecha_nac) }}" required>
+          </div>
         </div>
-    </form>
+        <div class="col-12 row">
+          <div class="form-group col-6">
+            <label for="" class="form-label">Género</label>
+            <select name="genero" class="form-control">
+              <option value="" selected disabled>Seleccione...</option>
+              <option value="1" {{ ($user->id_genero == 1) ? 'selected' : '' }}>Hombre</option>
+              <option value="2" {{ ($user->id_genero == 2) ? 'selected' : '' }}>Mujer</option>
+              <option value="3" {{ ($user->id_genero == 3) ? 'selected' : '' }}>Otro</option>
+            </select>
+          </div>
+          <div class="form-group col-6">
+            <label for="" class="form-label">Cédula</label>
+            <input type="text" name="cedula" class="form-control" value="{{ old('cedula', $user->cedula) }}">
+          </div>
+        </div>
+        <div class="mt-3 col-12">
+          <x-primary-button class="btn btn-secondary">Guardar</x-primary-button>
+        </div>
+      </form>
+    </div>
+  </div>
 </section>
