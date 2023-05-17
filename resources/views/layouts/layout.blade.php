@@ -104,13 +104,21 @@
               <span class="txt_links">Inventario</span>
             </a>
           </div>
+          <div class="item-menu">
+            <a href="">
+              <i class="icon-sidebar fa-lg fa-solid fa-folder-open"></i>
+              <span class="txt_links">Reportes</span>
+            </a>
+          </div>
         @endif
-        <div class="item-menu">
-          <a href="">
-            <i class="icon-sidebar fa-lg fa-solid fa-folder-open"></i>
-            <span class="txt_links">Reportes</span>
-          </a>
-        </div>
+        @if (Auth::user()->id_rol == 3)
+          <div class="item-menu">
+            <a href="{{ route('waiter.order.index') }}">
+              <i class="icon-sidebar fa-lg fa-solid fa-file-signature"></i>
+              <span class="txt_links">Pedidos</span>
+            </a>
+          </div>
+        @endif
         <div class="item-menu">
           <a href="{{ route('profile.edit') }}">
             <i class="icon-sidebar fa-lg fa-solid fa-screwdriver-wrench"></i>

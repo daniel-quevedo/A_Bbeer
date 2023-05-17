@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\HeadquarterController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\TypeProductController;
 use App\Http\Controllers\InventaryController;
+use App\Http\Controllers\Waiter\OrderController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -93,11 +94,17 @@ Route::middleware('auth')->group(function () {
     });
     Route::controller(InventaryController::class)->group(function() {
         Route::get('inventarios', 'index')->name('inventary.index');
-        Route::get('inventarios/agregar', 'store')->name('inventary.store');
-        Route::post('inventarios/agregados', 'add')->name('inventary.add');
         Route::post('inventarios/editar', 'edit')->name('inventary.edit');
         Route::post('inventarios/editados', 'showEdit')->name('inventary.showEdit');
-        Route::post('inventarios/eliminar', 'delete')->name('inventary.delete');
+    });
+    Route::controller(OrderController::class)->group(function() {
+        Route::get('pedidos', 'index')->name('waiter.order.index');
+        Route::get('pedidos/agregar', 'store')->name('waiter.order.store');
+        Route::post('pedidos/agregados', 'add')->name('waiter.order.add');
+        Route::post('pedidos/editar', 'edit')->name('waiter.order.edit');
+        Route::post('pedidos/editados', 'showEdit')->name('waiter.order.showEdit');
+        Route::post('pedidos/eliminar', 'delete')->name('waiter.order.delete');
+        Route::post('pedidos/visualizar', 'show')->name('waiter.order.show');
     });
 });
 

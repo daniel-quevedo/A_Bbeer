@@ -13,8 +13,12 @@ return new class extends Migration
     {
         Schema::create('pedido', function (Blueprint $table) {
             $table->id('idPedido');
+            $table->string('cod_pedido');
             $table->integer('cantidad');
-            $table->integer('id_inventario')->nullable();
+            $table->boolean('pagado')->nullable();
+            $table->boolean('estado')->nullable();
+            $table->integer('total')->nullable();
+            $table->integer('id_producto')->nullable();
             $table->integer('id_mesa')->nullable();
             $table->timestamps();
         });

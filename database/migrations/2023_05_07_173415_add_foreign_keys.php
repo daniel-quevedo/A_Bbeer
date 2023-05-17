@@ -27,7 +27,7 @@ return new class extends Migration
 
         Schema::table('pedido', function (Blueprint $table) {
             $table->foreign('id_mesa')->references('idMesa')->on('mesa');
-            $table->foreign('id_inventario')->references('idInventario')->on('inventario');
+            $table->foreign('id_producto')->references('idProducto')->on('producto');
         });
 
         Schema::table('producto', function (Blueprint $table) {
