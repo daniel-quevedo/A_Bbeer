@@ -55,7 +55,7 @@ class ProfileController extends Controller
         } catch (\Throwable $th) {
             DB::rollBack();
             Alert::error('¡Error!','No se pudo actualizar los datos');
-            dd($th);
+            // dd($th);
             return back();
         }
         Alert::success('¡Actualizado!','Haz actualizado tus datos correctamente');

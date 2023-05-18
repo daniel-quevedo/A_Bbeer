@@ -11,7 +11,7 @@
       <input type="text" class="form-control" name="tipo_producto" required value="{{ $typeProductEdit->tipo_producto }}">
     </div>
     <div>
-      <button class="btn btn-success">Agregar</button>
+      <button class="btn btn-success">Actualizar</button>
     </div>
   </form>
 @endsection

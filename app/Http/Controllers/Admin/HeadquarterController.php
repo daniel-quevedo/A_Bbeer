@@ -31,7 +31,7 @@ class HeadquarterController extends Controller
         } catch (\Throwable $th) {
             DB::rollBack();
             Alert::error('¡Error!', 'No se pudo agregar la sede');
-            dd($th);
+            // dd($th);
             return back();
         }
         return redirect()->route('admin.headquarter.index');
@@ -53,7 +53,7 @@ class HeadquarterController extends Controller
             Alert::success('¡Actualizado!', 'Sede actualizada correctamente');
         } catch (\Throwable $th) {
             DB::rollBack();
-            Alert::error('¡Error!', 'No se pudo agregar la sede');
+            Alert::error('¡Error!', 'No se pudo actualizar la sede');
             // dd($th);
             return back();
         }

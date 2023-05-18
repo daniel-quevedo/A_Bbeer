@@ -46,7 +46,7 @@ class ProductController extends Controller
         } catch (\Throwable $th) {
             DB::rollBack();
             Alert::error('¡Error!', 'No se pudo agregar el producto');
-            dd($th);
+            // dd($th);
             return back();
         }
         return redirect()->route('admin.product.index');
@@ -73,7 +73,7 @@ class ProductController extends Controller
             Alert::success('¡Actualizado!', 'Producto actualizado correctamente');
         } catch (\Throwable $th) {
             DB::rollBack();
-            Alert::error('¡Error!', 'No se pudo agregar el producto');
+            Alert::error('¡Error!', 'No se pudo actualizar el producto');
             // dd($th);
             return back();
         }

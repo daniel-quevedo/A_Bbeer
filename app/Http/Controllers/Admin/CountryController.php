@@ -52,7 +52,7 @@ class CountryController extends Controller
             Alert::success('¡Actualizado!', 'País actualizado correctamente');
         } catch (\Throwable $th) {
             DB::rollBack();
-            Alert::error('¡Error!', 'No se pudo agregar el usuario');
+            Alert::error('¡Error!', 'No se pudo actualizar el país');
             // dd($th);
             return back();
         }

@@ -75,7 +75,7 @@ class MesaController extends Controller
             Alert::success('¡Actualizado!', 'Mesa actualizada correctamente');
         } catch (\Throwable $th) {
             DB::rollBack();
-            Alert::error('¡Error!', 'No se pudo agregar la mesa');
+            Alert::error('¡Error!', 'No se pudo actualizar la mesa');
             // dd($th);
             return back();
         }

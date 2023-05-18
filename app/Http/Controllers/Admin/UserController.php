@@ -102,7 +102,7 @@ class UserController extends Controller
             Alert::success('¡Actualizado!', 'Usuario actualizado correctamente');
         } catch (\Throwable $th) {
             DB::rollBack();
-            Alert::error('¡Error!', 'No se pudo agregar el usuario');
+            Alert::error('¡Error!', 'No se pudo actualizar el usuario');
             return back();
         }
 

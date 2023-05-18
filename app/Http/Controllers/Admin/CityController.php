@@ -53,7 +53,7 @@ class CityController extends Controller
             Alert::success('¡Actualizado!', 'Ciudad actualizada correctamente');
         } catch (\Throwable $th) {
             DB::rollBack();
-            Alert::error('¡Error!', 'No se pudo agregar la ciudad');
+            Alert::error('¡Error!', 'No se pudo actualizar la ciudad');
             // dd($th);
             return back();
         }

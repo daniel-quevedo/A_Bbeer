@@ -27,7 +27,7 @@ class TypeProductController extends Controller
             $table->tipo_producto = $request->tipo_producto;
             $table->save();
             DB::commit();
-            Alert::success('¡Agregado!', 'Tipo producto agregado correctamente');
+            Alert::success('¡Agregado!', 'Tipo de producto agregado correctamente');
         } catch (\Throwable $th) {
             DB::rollBack();
             Alert::error('¡Error!', 'No se pudo agregar este tipo de producto');

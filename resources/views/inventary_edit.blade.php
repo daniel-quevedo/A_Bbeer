@@ -17,7 +17,7 @@
       </div>
     </div>
     <div>
-      <button class="btn btn-success">Agregar</button>
+      <button class="btn btn-success">Actualizar</button>
     </div>
   </form>
 @endsection
