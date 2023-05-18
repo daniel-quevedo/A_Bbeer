@@ -1,5 +1,7 @@
 @extends('../layouts.layout')
 
+@section('título','Configuración')
+
 @section('content')
 <div class="py-12">
   <div class="col-12">

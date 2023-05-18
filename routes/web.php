@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\HeadquarterController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\TypeProductController;
 use App\Http\Controllers\InventaryController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\Waiter\OrderController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -96,6 +97,10 @@ Route::middleware('auth')->group(function () {
         Route::get('inventarios', 'index')->name('inventary.index');
         Route::post('inventarios/editar', 'edit')->name('inventary.edit');
         Route::post('inventarios/editados', 'showEdit')->name('inventary.showEdit');
+    });
+    Route::controller(ReportController::class)->group(function() {
+        Route::get('reportes', 'index')->name('report.index');
+        Route::post('reportes', 'show')->name('report.show');
     });
     Route::controller(OrderController::class)->group(function() {
         Route::get('pedidos', 'index')->name('waiter.order.index');

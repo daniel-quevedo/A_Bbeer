@@ -97,15 +97,15 @@
             </div>
           </div>
         @endif
+        <div class="item-menu">
+          <a href="{{ route('inventary.index') }}">
+            <i class="icon-sidebar fa-solid fa-truck-ramp-box"></i>
+            <span class="txt_links">Inventario</span>
+          </a>
+        </div>
         @if (Auth::user()->id_rol == 2 || Auth::user()->id_rol == 1)
           <div class="item-menu">
-            <a href="{{ route('inventary.index') }}">
-              <i class="icon-sidebar fa-solid fa-truck-ramp-box"></i>
-              <span class="txt_links">Inventario</span>
-            </a>
-          </div>
-          <div class="item-menu">
-            <a href="">
+            <a href="{{ route('report.index') }}">
               <i class="icon-sidebar fa-lg fa-solid fa-folder-open"></i>
               <span class="txt_links">Reportes</span>
             </a>

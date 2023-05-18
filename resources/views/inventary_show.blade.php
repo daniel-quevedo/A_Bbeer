@@ -9,7 +9,9 @@
         <tr>
           <th>Producto</th>
           <th>Cantidad</th>
-          <th>Acciones</th>
+          @if (Auth::user()->id_rol != 3 )
+            <th>Acciones</th>
+          @endif
         </tr>
       </thead>
       <tbody >
@@ -17,17 +19,19 @@
           <tr>
             <td>{{ $item->producto }}</td>
             <td>{{ $item->cantidad }}</td>
-            <td>
-              <form action="{{ route('inventary.showEdit') }}" method="post">
-                @csrf
-                <input type="hidden" name="id" readonly value="{{ $item->idInventario }}">
-                <div class="col-12 row">
-                  <div class="col-6">
-                    <button class="btn btn-sm btn-primary"><i class="fa-solid fa-pen-to-square"></i></button>
+            @if (Auth::user()->id_rol != 3)
+              <td>
+                <form action="{{ route('inventary.showEdit') }}" method="post">
+                  @csrf
+                  <input type="hidden" name="id" readonly value="{{ $item->idInventario }}">
+                  <div class="col-12 row">
+                    <div class="col-6">
+                      <button class="btn btn-sm btn-primary"><i class="fa-solid fa-pen-to-square"></i></button>
+                    </div>
                   </div>
-                </div>
-              </form>
-            </td>
+                </form>
+              </td>
+            @endif
           </tr>
         @endforeach
       </tbody>
