@@ -29,7 +29,12 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        if (Auth::user()->remember_token == null) {
+            return redirect()->route('profile.edit');
+        }else{
+            return redirect()->intended(RouteServiceProvider::HOME);
+        }
+
     }
 
     /**

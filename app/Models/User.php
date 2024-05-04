@@ -33,6 +33,7 @@ class User extends Authenticatable
         'id_sede',
         'foto_perfil',
         'password',
+        'remember_token',
     ];
 
     /**
