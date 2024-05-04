@@ -84,17 +84,22 @@ class ProductController extends Controller
     public function delete(Request $request)
     {
         try {
-            DB::beginTransaction();
-            Product::where('idProducto',$request->id)->delete();
-            DB::commit();
-            Alert::success('Eliminado!', 'Producto eliminado correctamente');
+            $unidades = Inventary::select('cantidad')->where('id_producto',$request->id)->first()->cantidad;
+            if ($unidades > 0) {
+                Alert::error('Error','El producto no puede ser eliminado porque aún existen '.$unidades.' unidades');
+            }else{
+                DB::beginTransaction();
+                Inventary::where('id_producto',$request->id)->delete();
+                Product::where('idProducto',$request->id)->delete();
+                DB::commit();
+                Alert::success('Eliminado!', 'Producto eliminado correctamente');
+            }
         } catch (\Throwable $th) {
             DB::rollBack();
             Alert::error('¡Error!', 'No se pudo eliminar el producto');
             // dd($th);
             return back();
         }
-
         return redirect()->route('admin.product.index');
     }
 }

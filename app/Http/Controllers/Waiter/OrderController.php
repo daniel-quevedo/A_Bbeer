@@ -60,6 +60,10 @@ class OrderController extends Controller
                 DB::rollBack();
                 Alert::error('¡Error!','Solo existen '.$stockInventary->cantidad.' unidades en el inventario de este producto');
                 return back();
+            }else{
+                $table = Inventary::where('id_producto',$request->id_producto)->first();
+                $table->cantidad = $table->cantidad - $request->cantidad;
+                $table->save();
             }
             if($existProduct != null){
                 $table =  Order::find($existProduct->idPedido);
@@ -90,8 +94,8 @@ class OrderController extends Controller
             DB::commit();
         } catch (\Throwable $th) {
             DB::rollBack();
-            Alert::error('¡Error!', 'No se pudo agregar el pedido');
             // dd($th);
+            Alert::error('¡Error!', 'No se pudo agregar el pedido');
             return back();
         }
         $cod_order = $table->cod_pedido;
@@ -105,6 +109,7 @@ class OrderController extends Controller
         $orderEdit = Order::select('pedido.cantidad','p.producto','pedido.total')
         ->join('producto as p','p.idProducto','pedido.id_producto')
         ->where('cod_pedido',$request->cod_pedido)
+        ->where('estado',true)
         ->get();
         return view('waiter.order_edit',compact('products','mesa','orderEdit'));
     }
@@ -132,10 +137,11 @@ class OrderController extends Controller
     {
         try {
             DB::beginTransaction();
-            Order::where('cod_pedido',$request->cod_pedido)->update([
-                'estado' => false,
-                'updated_at' => now()
-            ]);
+            $stockBack = Order::select('id_producto','cantidad')->where('cod_pedido',$request->cod_pedido)->first();
+            $table = Inventary::where('id_producto',$stockBack->id_producto)->first();
+            $table->cantidad = $table->cantidad + $stockBack->cantidad;
+            $table->save();
+            Order::where('cod_pedido',$request->cod_pedido)->delete();
             DB::commit();
             Alert::success('Eliminado!', 'Pedido eliminado correctamente');
         } catch (\Throwable $th) {
@@ -149,10 +155,10 @@ class OrderController extends Controller
     }
     public function show(Request $request)
     {
-
         $showOrder = Order::select('pedido.cantidad','p.producto','pedido.total')
         ->join('producto as p','p.idProducto','pedido.id_producto')
         ->where('cod_pedido',$request->cod_pedido)
+        ->where('estado',true)
         ->get();
         return view('waiter.order_show',compact('showOrder'));
     }
