@@ -8,6 +8,7 @@
   <script src="{{ asset('bootstrap/js/bootstrap.bundle.min.js') }}"></script>
   <link rel="stylesheet" href="{{ asset('css/style.css') }}">
   <script src="{{ asset('fontawesome/js/all.min.js') }}"></script>
+  <script src="{{ asset('vendor/sweetalert/sweetalert.all.js') }}"></script>
   <link rel="stylesheet" href="{{ asset('bootstrap/css/datatable/bootstrap5.2.min.css') }}">
   <link rel="stylesheet" href="{{ asset('bootstrap/css/datatable/datatables.bootstrap5.2.min.css') }}">
   @yield('links')
@@ -66,13 +67,13 @@
               <i class="fa-solid fa-angle-right ico-submenu" id="ico-submenu"></i>
             </a>
             <div class="submenu">
-              <a href="{{ route('admin.city.index') }}" class="sub-item">
-                <i class="icon-sidebar fa-solid fa-city"></i>
-                <span>Ciudad</span>
-              </a>
               <a href="{{ route('admin.country.index') }}" class="sub-item">
                 <i class="icon-sidebar fa-solid fa-earth-americas"></i>
                 <span>País</span>
+              </a>
+              <a href="{{ route('admin.city.index') }}" class="sub-item">
+                <i class="icon-sidebar fa-solid fa-city"></i>
+                <span>Ciudad</span>
               </a>
               <a href="{{ route('admin.users.index') }}" class="sub-item">
                 <i class="icon-sidebar fa-solid fa-users"></i>
@@ -146,5 +147,16 @@
 <script src="{{ asset('js/jquery/jquery3.5.1.js') }}"></script>
 <script src="{{ asset('bootstrap/js/datatables/jquery.datatables.min.js') }}"></script>
 <script src="{{ asset('bootstrap/js/datatables/datatables.bootstrap5.2.min.js') }}"></script>
+
+@if (Auth::user()->remember_token == null)
+<script>
+  Swal.fire({
+    position: 'top-end',
+    icon: 'warning',
+    title: 'Cambia tu clave por defecto',
+    showConfirmButton: false,
+  })
+</script>
+@endif
 @yield('scripts')
 </html>

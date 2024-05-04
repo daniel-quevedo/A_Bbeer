@@ -26,6 +26,8 @@
       <x-input-error :messages="$errors->get('password')" class="mt-2" />
     </div>
 
+    <a href="{{ route('password.request') }}" class="text-white">¿Olvidaste tu contraseña?</a>
+
     <div class="flex items-center justify-center mt-4 pt-4">
       <x-primary-button class="ml-3">
         {{ __('Iniciar Sesión') }}
