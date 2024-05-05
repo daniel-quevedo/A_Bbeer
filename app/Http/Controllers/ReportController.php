@@ -23,16 +23,19 @@ class ReportController extends Controller
         $fecha_ini = date("Y-m-d H:i:s", strtotime($fecha_ini));
         $fecha_fin = $request->fecha_fin;
         $fecha_fin = date("Y-m-d H:i:s", strtotime($fecha_fin));
-        if (Auth::user()->id == 1) {
-            $reports = Order::select('pedido.cantidad','pedido.pagado','pedido.total','p.producto','m.mesa')
+        if (Auth::id() == 1) {
+            $reports = Order::select('pedido.cantidad','pedido.pagado','pedido.total','p.producto','m.mesa'
+            ,'s.sede','c.ciudad','pedido.updated_at')
             ->join('producto as p','p.idProducto','pedido.id_producto')
             ->join('mesa as m','m.idMesa','pedido.id_mesa')
+            ->join('sede as s','s.idSede','m.id_sede')
+            ->join('ciudad as c','c.idCiudad','m.id_ciudad')
             ->where('pedido.id_producto',$request->id_producto)
             ->whereBetween('pedido.created_at',[$fecha_ini,$fecha_fin])
             ->get();
         }else{
             $reports = Order::select('pedido.cantidad','pedido.pagado','pedido.total','p.producto','m.mesa')
-            ->join('producto as p','p.idProducto','pedido.id_producto')
+            ->join('producto as p','p.idProducto','pedido.id_producto','pedido.updated_at')
             ->join('mesa as m','m.idMesa','pedido.id_mesa')
             ->where('pedido.id_producto',$request->id_producto)
             ->where('m.id_sede',Auth::user()->id_sede)

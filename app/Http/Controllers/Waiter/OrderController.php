@@ -106,7 +106,9 @@ class OrderController extends Controller
     }
     public function showEdit(Request $request)
     {
-        $products = Product::all();
+        $products = Product::select('producto.*')
+        ->join('inventario as inv','inv.id_producto','producto.idProducto')
+        ->where('inv.estado', 1)->get();
         $mesa = Mesa::all();
         $orderEdit = Order::select('pedido.cantidad','p.producto','pedido.total','pedido.id_mesa')
         ->join('producto as p','p.idProducto','pedido.id_producto')
