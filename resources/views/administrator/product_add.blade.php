@@ -42,6 +42,5 @@
   </form>
 @endsection
 @section('scripts')
-  <script>
-  </script>
+  <script src="{{ asset('js/product.js') }}"></script>
 @endsection

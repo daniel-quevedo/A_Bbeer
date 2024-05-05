@@ -39,7 +39,5 @@
   </form>
 @endsection
 @section('scripts')
-  <script>
-
-  </script>
+  <script src="{{ asset('js/report.js') }}"></script>
 @endsection

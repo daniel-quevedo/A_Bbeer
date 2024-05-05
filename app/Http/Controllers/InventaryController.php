@@ -54,14 +54,14 @@ class InventaryController extends Controller
     {
         try {
             DB::beginTransaction();
-            $vari = Inventary::where('idInventario',$request->idInv)->update([
+            Inventary::where('idInventario',$request->idInv)->update([
                 'estado' => ($request->state == "true") ? 1 : 0
             ]);
             DB::commit();
             $message = 'success';
         } catch (\Throwable $th) {
             DB::rollBack();
-            $message = 'error';
+            $message = 'error: '.$th;
         }
         return $message;
     }

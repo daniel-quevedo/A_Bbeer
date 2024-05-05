@@ -16,6 +16,5 @@
   </form>
 @endsection
 @section('scripts')
-  <script>
-  </script>
+  <script src="{{ asset('js/city.js') }}"></script>
 @endsection

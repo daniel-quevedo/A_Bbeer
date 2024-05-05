@@ -47,6 +47,5 @@
   </form>
 @endsection
 @section('scripts')
-  <script>
-  </script>
+  <script src="{{ asset('js/mesa.js') }}"></script>
 @endsection

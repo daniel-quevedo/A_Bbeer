@@ -7,7 +7,7 @@
     @csrf
     <div class="col-12 my-5">
       <label for="" class="form-label">Tipo de producto</label>
-      <input type="text" class="form-control" name="tipo_producto" required placeholder="cerveza, vino, wisky, etc.">
+      <input type="text" class="form-control" name="tipo_producto" required placeholder="cerveza, vino, whisky, etc.">
     </div>
     <div>
       <button class="btn btn-success">Agregar</button>
@@ -15,6 +15,5 @@
   </form>
 @endsection
 @section('scripts')
-  <script>
-  </script>
+  <script src="{{ asset('js/typeProduct.js') }}"></script>
 @endsection

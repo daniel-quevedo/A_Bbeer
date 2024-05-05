@@ -22,6 +22,5 @@
   </form>
 @endsection
 @section('scripts')
-  <script>
-  </script>
+  <script src="{{ asset('js/inventary.js') }}"></script>
 @endsection

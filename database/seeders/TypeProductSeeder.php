@@ -30,7 +30,7 @@ class TypeProductSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'tipo_producto' => 'Wisky',
+                'tipo_producto' => 'Whisky',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
