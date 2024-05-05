@@ -107,6 +107,7 @@ Route::middleware('auth')->group(function () {
         Route::get('pedidos/agregar', 'store')->name('waiter.order.store');
         Route::post('pedidos/agregados', 'add')->name('waiter.order.add');
         Route::post('pedidos/editar', 'edit')->name('waiter.order.edit');
+        Route::get('pedidos/editados', 'showEdit')->name('waiter.order.showEdit');  
         Route::post('pedidos/editados', 'showEdit')->name('waiter.order.showEdit');
         Route::post('pedidos/eliminar', 'delete')->name('waiter.order.delete');
         Route::post('pedidos/visualizar', 'show')->name('waiter.order.show');

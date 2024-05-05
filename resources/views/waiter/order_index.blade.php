@@ -38,14 +38,14 @@
                     <div class="col-4">
                       <button formaction="{{ route('waiter.order.edit') }}" class="btn btn-sm btn-success" title="Pagar"><i class="fa-solid fa-coins"></i></button>
                     </div>
+                    <div class="col-4">
+                      <button formaction="{{ route('waiter.order.delete') }}" class="btn btn-sm btn-danger" title="Eliminar"><i class="fa-solid fa-trash"></i></button>
+                    </div>
                   @else
-                  <div class="col-4">
-                    <button formaction="{{ route('waiter.order.show') }}" class="btn btn-sm btn-dark" title="Ver"><i class="fa-solid fa-eye"></i></button>
-                  </div>
+                    <div class="col-4">
+                      <button formaction="{{ route('waiter.order.show') }}" class="btn btn-sm btn-dark" title="Ver"><i class="fa-solid fa-eye"></i></button>
+                    </div>
                   @endif
-                  <div class="col-4">
-                    <button formaction="{{ route('waiter.order.delete') }}" class="btn btn-sm btn-danger" title="Eliminar"><i class="fa-solid fa-trash"></i></button>
-                  </div>
                 </div>
               </form>
             </td>

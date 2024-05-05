@@ -7,8 +7,9 @@ use App\Models\Inventary;
 use App\Models\Mesa;
 use App\Models\Order;
 use App\Models\Product;
-use App\Models\TypeProduct;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -25,9 +26,9 @@ class OrderController extends Controller
     }
     public function store(Request $request)
     {
-        // dd($request->cod_pedido);
         $products = Product::all();
-        $mesa = Mesa::all();
+        $user = User::select('id_sede')->find(Auth::id());
+        $mesa = Mesa::where('id_sede',$user->id_sede)->get();
         if ($request->cod_pedido) {
             $order = Order::select('pedido.cantidad','p.producto','pedido.total')
             ->join('producto as p','p.idProducto','pedido.id_producto')
@@ -98,15 +99,14 @@ class OrderController extends Controller
             Alert::error('¡Error!', 'No se pudo agregar el pedido');
             return back();
         }
-        $cod_order = $table->cod_pedido;
 
-        return redirect()->route('waiter.order.store',['cod_pedido' => $cod_order]);
+        return redirect()->route('waiter.order.showEdit',['cod_pedido' => $table->cod_pedido]);
     }
     public function showEdit(Request $request)
     {
         $products = Product::all();
         $mesa = Mesa::all();
-        $orderEdit = Order::select('pedido.cantidad','p.producto','pedido.total')
+        $orderEdit = Order::select('pedido.cantidad','p.producto','pedido.total','pedido.id_mesa')
         ->join('producto as p','p.idProducto','pedido.id_producto')
         ->where('cod_pedido',$request->cod_pedido)
         ->where('estado',true)
@@ -137,10 +137,12 @@ class OrderController extends Controller
     {
         try {
             DB::beginTransaction();
-            $stockBack = Order::select('id_producto','cantidad')->where('cod_pedido',$request->cod_pedido)->first();
-            $table = Inventary::where('id_producto',$stockBack->id_producto)->first();
-            $table->cantidad = $table->cantidad + $stockBack->cantidad;
+            $stockBack = Order::select('id_producto','cantidad')->where('cod_pedido',$request->cod_pedido)->get();
+            foreach ($stockBack as $item) {
+                $table = Inventary::where('id_producto',$item->id_producto)->first();
+                $table->cantidad = $table->cantidad + $item->cantidad;
             $table->save();
+            }
             Order::where('cod_pedido',$request->cod_pedido)->delete();
             DB::commit();
             Alert::success('Eliminado!', 'Pedido eliminado correctamente');

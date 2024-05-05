@@ -23,10 +23,11 @@
           </select>
         </td>
         <td class="col-4">
-          <select name="id_mesa" class="form-select" id="mesa" required>
-            <option value="" selected disabled>Seleccione...</option>
+          <select name="id_mesa" class="form-control" id="mesa" required>
             @foreach ($mesa as $item)
-              <option value="{{ $item->idMesa }}">{{ $item->mesa }}</option>
+              @if ($orderEdit[0]->id_mesa == $item->idMesa)
+                <option value="{{ $item->idMesa }}" selected>{{ $item->mesa }}</option>
+              @endif
             @endforeach
           </select>
         </td>
@@ -75,12 +76,10 @@
     let valueU = document.getElementById('valueU');
     let val;
     let cod_order;
+
     p.addEventListener('change', function(){
       val = p.value
       valueU.value = val;
-    });
-
-    m.addEventListener('change', function(){
       mesa = 'M0' + m.value;
     });
 
