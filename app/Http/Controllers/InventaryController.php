@@ -49,4 +49,20 @@ class InventaryController extends Controller
 
         return redirect()->route('inventary.index');
     }
+
+    public function stateInventary(Request $request)
+    {
+        try {
+            DB::beginTransaction();
+            $vari = Inventary::where('idInventario',$request->idInv)->update([
+                'estado' => ($request->state == "true") ? 1 : 0
+            ]);
+            DB::commit();
+            $message = 'success';
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            $message = 'error';
+        }
+        return $message;
+    }
 }

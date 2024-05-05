@@ -7,7 +7,6 @@ use App\Models\Inventary;
 use App\Models\Mesa;
 use App\Models\Order;
 use App\Models\Product;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -28,9 +27,10 @@ class OrderController extends Controller
     }
     public function store(Request $request)
     {
-        $products = Product::all();
-        $user = User::select('id_sede')->find(Auth::id());
-        $mesa = Mesa::where('id_sede',$user->id_sede)->get();
+        $products = Product::select('producto.*')
+        ->join('inventario as inv','inv.id_producto','producto.idProducto')
+        ->where('inv.estado', 1)->get();
+        $mesa = Mesa::where('id_sede',Auth::user()->id_sede)->get();
         if ($request->cod_pedido) {
             $order = Order::select('pedido.cantidad','p.producto','pedido.total')
             ->join('producto as p','p.idProducto','pedido.id_producto')

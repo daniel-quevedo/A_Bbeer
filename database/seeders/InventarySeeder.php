@@ -17,30 +17,37 @@ class InventarySeeder extends Seeder
             [
                 'cantidad' => '100',
                 'id_producto' => '1',
+                'estado' => '1',
             ],
             [
                 'cantidad' => '100',
                 'id_producto' => '2',
+                'estado' => '1',
             ],
             [
                 'cantidad' => '100',
                 'id_producto' => '3',
+                'estado' => '1',
             ],
             [
                 'cantidad' => '100',
                 'id_producto' => '4',
+                'estado' => '1',
             ],
             [
                 'cantidad' => '100',
                 'id_producto' => '5',
+                'estado' => '1',
             ],
             [
                 'cantidad' => '100',
                 'id_producto' => '6',
+                'estado' => '1',
             ],
             [
                 'cantidad' => '100',
                 'id_producto' => '7',
+                'estado' => '1',
             ],
         ]);
     }

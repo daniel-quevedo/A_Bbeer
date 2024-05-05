@@ -133,15 +133,6 @@
     </main>
   </section>
   @include('sweetalert::alert')
-  <script>
-    const submenu = document.querySelector('.submenu');
-    const parentMenu = document.querySelector('.sidebar .item-menu:nth-child(2)');
-
-    parentMenu.addEventListener('click', function() {
-      submenu.classList.toggle('hide');
-      document.querySelector('.ico-submenu').classList.toggle('rotate');
-    });
-  </script>
   <script src="{{ asset('js/javascript.js') }}"></script>
 </body>
 <script src="{{ asset('js/jquery/jquery3.5.1.js') }}"></script>

@@ -97,6 +97,7 @@ Route::middleware('auth')->group(function () {
         Route::get('inventarios', 'index')->name('inventary.index');
         Route::post('inventarios/editar', 'edit')->name('inventary.edit');
         Route::post('inventarios/editados', 'showEdit')->name('inventary.showEdit');
+        Route::post('inventarios/activar', 'stateInventary')->name('inventary.state');
     });
     Route::controller(ReportController::class)->group(function() {
         Route::get('reportes', 'index')->name('report.index');

@@ -16,7 +16,7 @@
       </thead>
       <tbody >
         @foreach ($inventaries as $item)
-          <tr>
+          <tr class="bgi-{{ $item->idInventario }} {{$item->estado == '0' ? 'bg-danger ' : '' }} bg-opacity-50">
             <td>{{ $item->producto }}</td>
             <td>{{ $item->cantidad }}</td>
             @if (Auth::user()->id_rol != 3)
@@ -27,6 +27,9 @@
                   <div class="col-12 row">
                     <div class="col-6">
                       <button class="btn btn-sm btn-primary"><i class="fa-solid fa-pen-to-square"></i></button>
+                    </div>
+                    <div class="form-check form-switch col-6">
+                      <input class="form-check-input" type="checkbox" role="switch" id="stateInv_{{ $item->idInventario }}" onclick="stateInventary({{ $item->idInventario }})" {{ ($item->estado == '1' ? 'checked' : '') }}>
                     </div>
                   </div>
                 </form>
@@ -40,6 +43,48 @@
 @endsection
 @section('scripts')
   <script>
+    function stateInventary(data) {
+      $.ajax({
+        type: "post",
+        url: "inventarios/activar",
+        data: {
+          "_token": "{{ csrf_token() }}",
+          'idInv': data,
+          'state': document.getElementById('stateInv_'+data).checked
+        },
+        success: function (response) {
+          if (response == 'error') {
+            Toast.fire({
+              icon: "error",
+              title: "Error al cambiar de estado "+document.getElementById('stateInv_'+data).checked
+            });
+            if (document.getElementById('stateInv_'+data).checked) {
+              document.getElementById('stateInv_'+data).checked = false;
+            }else{
+              document.getElementById('stateInv_'+data).checked = true;
+            }
+          }else{
+            if (document.querySelector('.bgi-' + data + '.bg-danger' )) {
+              document.querySelector('.bgi-'+data).classList.remove('bg-danger');
+            }else{
+              document.querySelector('.bgi-'+data).classList.add('bg-danger');
+            }
+            Toast.fire({
+              icon: "success",
+              title: "Estado cambiado correctamente"
+            });
+          }
+        },
+        error: function (response) {
+          if (document.getElementById('stateInv_'+data).checked) {
+            // document.getElementByClassName('.bg-danger').classList.remove('bg-danger')
+            document.getElementById('stateInv_'+data).checked = false;
+          }else{
+            document.getElementById('stateInv_'+data).checked = true;
+          }
+        }
+      });
+    }
     $(document).ready(function () {
       $('#table-inventary').DataTable({
         language: {
