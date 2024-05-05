@@ -19,7 +19,9 @@ class OrderController extends Controller
     {
         $orders = Order::select('cod_pedido','m.mesa','pagado',DB::raw('sum(cantidad) as cantidad , sum(total) as total'))
         ->join('mesa as m','m.idMesa','pedido.id_mesa')
+        ->join('users as u','u.id_sede','m.id_sede')
         ->where('estado',true)
+        ->where('u.id',Auth::id())
         ->groupBy('cod_pedido','m.mesa','pagado')
         ->get();
         return view('waiter.order_index',compact('orders'));
@@ -77,9 +79,9 @@ class OrderController extends Controller
                 ->orderBy('cod_pedido','desc')
                 ->first();
                 if ($validateOrder != null) {
-                    $v = substr($validateOrder->cod_pedido,0,1);
+                    $v = strstr($validateOrder->cod_pedido,"_",true); //trae los caracteres antes del guión
                     $v = $v + 1;
-                    $cod_pedido = $v.'_cod_M01';
+                    $cod_pedido = $v.strstr($validateOrder->cod_pedido,"_"); //trae los caracteres después del guión
                 }
                 $table = new Order();
                 $table->cod_pedido = $cod_pedido;

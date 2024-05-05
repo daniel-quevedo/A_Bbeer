@@ -96,7 +96,6 @@ class UserController extends Controller
             $table->id_pais = $request->id_pais;
             $table->id_ciudad = $request->id_ciudad;
             $table->id_sede = $request->id_sede;
-            $table->password = Hash::make('123456');
             $table->save();
             DB::commit();
             Alert::success('¡Actualizado!', 'Usuario actualizado correctamente');
