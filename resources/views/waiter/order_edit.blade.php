@@ -5,7 +5,6 @@
 @section('content')
   <form action="{{ route('waiter.order.add') }}" method="post">
     @csrf
-    <input type="hidden" name="cod_pedido" id="cod_order" readonly>
     <table class="table table-borderless table-responsive">
       <tr>
         <td>Productos</td>

@@ -43,14 +43,6 @@ class OrderController extends Controller
     {
         try {
             DB::beginTransaction();
-            $currentOrder = Order::select('cod_pedido')->where('pagado',false)
-            ->where('id_mesa',$request->mesa)
-            ->orderBy('cod_pedido','desc')
-            ->first();
-            if($currentOrder != null){
-                $cod_pedido = $currentOrder->cod_pedido;
-            }else $cod_pedido = $request->cod_pedido;
-
             $existProduct = Order::select('idPedido')
             ->where('id_producto',$request->id_producto)
             ->where('id_mesa',$request->id_mesa)
