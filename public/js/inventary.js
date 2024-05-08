@@ -8,6 +8,74 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+function showEditInv(id,token) {
+  fetch('inventarios/editados', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json;charset=UTF-8'
+    },
+    body: JSON.stringify({
+      _token: token,
+      id: id,
+    })
+  })
+  .then(response => response.json())
+  .then((data) => {
+    document.getElementById('prodInv').value = data.message.producto;
+    document.getElementById('cantInv').value = data.message.cantidad;
+    document.getElementById('idInv').value = data.message.idInventario;
+    new bootstrap.Modal(document.getElementById('editInv')).show();
+  })
+  .catch((error) => {
+    Toast.fire({
+      icon: "error",
+      title: "No fue posible visualizar la información",
+    });
+    console.error(error);
+  });
+}
+
+function editInv(token) {
+  fetch('inventarios/editar', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json;charset=UTF-8'
+    },
+    body: JSON.stringify({
+      _token: token,
+      id: document.getElementById('idInv').value,
+      cantidad: document.getElementById('cantInv').value
+    })
+  })
+  .then(response => response.json())
+  .then((data) => {
+    if (data.message == 'success') {
+      let table = new DataTable(document.getElementById("table-inventary"));
+      let newCant = table.cell('#cant-' + document.getElementById('idInv').value);
+      newCant.data(data.newCant)
+      table.draw();
+      Toast.fire({
+        icon: "success",
+        title: "Cantidad actualizada correctamente",
+      });
+    }else{
+      let titleMessage = 'No se pudo actualizar la cantidad'
+      Toast.fire({
+        icon: "error",
+        title: (data.message == 'fail' ? 'Cantidad no admitida' : titleMessage),
+      });
+      console.error(data.message);
+    }
+  })
+  .catch((error) => {
+    Toast.fire({
+      icon: "error",
+      title: "No se pudo actualizar la cantidad",
+    });
+    console.error(error);
+  });
+}
+
 function stateInventary(id, token) {
   let checkbox = document.getElementById("stateInv_" + id);
   let state = checkbox.checked;

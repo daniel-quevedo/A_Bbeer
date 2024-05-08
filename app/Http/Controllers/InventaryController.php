@@ -25,10 +25,15 @@ class InventaryController extends Controller
     }
     public function showEdit(Request $request)
     {
-        $inventaryEdit = Inventary::select('inventario.*','p.producto')->where('idInventario',$request->id)
-        ->join('producto as p','p.idProducto','inventario.id_producto')
-        ->first();
-        return view('inventary_edit',compact('inventaryEdit'));
+        try {
+            $inventaryEdit = Inventary::select('inventario.idInventario','inventario.cantidad','p.producto')
+            ->where('idInventario',$request->id)
+            ->join('producto as p','p.idProducto','inventario.id_producto')
+            ->first();
+            return response()->json(['message' => $inventaryEdit], 200);
+        } catch (\Throwable $th) {
+            return response()->json(['message' => $th], 500);
+        }
 
     }
     public function edit(Request $request)
@@ -36,13 +41,19 @@ class InventaryController extends Controller
         try {
             DB::beginTransaction();
             $table = Inventary::find($request->id);
-            $table->cantidad = $request->cantidad;
-            $table->save();
+            if (($request->cantidad + $table->cantidad) < 0  ) {
+                return response()->json(['message' => 'fail'], 200);
+            }else{
+                $table->cantidad = $request->cantidad;
+                $table->save();
+            }
+
+
             DB::commit();
-            Alert::toast('Inventario actualizado correctamente','success');
+            return response()->json(['message' => 'success', 'newCant' => $table->cantidad], 200);
         } catch (\Throwable $th) {
             DB::rollBack();
-            Alert::error('¡Error!', 'No se pudo agregar el inventario');
+            return response()->json(['message' => $th], 500);
             // dd($th);
             return back();
         }
