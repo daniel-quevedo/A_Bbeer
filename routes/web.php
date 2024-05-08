@@ -112,6 +112,7 @@ Route::middleware('auth')->group(function () {
         Route::post('pedidos/editados', 'showEdit')->name('waiter.order.showEdit');
         Route::post('pedidos/eliminar', 'delete')->name('waiter.order.delete');
         Route::post('pedidos/visualizar', 'show')->name('waiter.order.show');
+        Route::post('pedidos/eliminar-producto', 'deleteProduct')->name('waiter.order.delProduct');
     });
 });
 

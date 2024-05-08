@@ -50,17 +50,20 @@
     <table class="table table-responsive table-sm mt-5">
       <thead class="table-dark">
         <tr>
-          <td>Producto</td>
-          <td>Cantidad</td>
-          <td>Valor</td>
+          <th>Producto</th>
+          <th>Cantidad</th>
+          <th>Valor</th>
+          <th>Acción</th>
         </tr>
       </thead>
       <tbody>
         @foreach ($orderEdit as $item)
-          <tr>
+          <tr id="row-{{ $item->idPedido }}">
             <td>{{ $item->producto }}</td>
             <td>{{ $item->cantidad }}</td>
             <td>${{ $item->total }}</td>
+            <td><i class="fa-solid fa-trash btn btn-danger" 
+              onclick="delProduct({{ $item->idPedido }},'{{ csrf_token() }}')"></i></td>
           </tr>
         @endforeach
       </tbody>

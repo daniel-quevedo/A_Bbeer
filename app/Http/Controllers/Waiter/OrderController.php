@@ -102,7 +102,8 @@ class OrderController extends Controller
         ->join('inventario as inv','inv.id_producto','producto.idProducto')
         ->where('inv.estado', 1)->get();
         $mesa = Mesa::all();
-        $orderEdit = Order::select('pedido.cantidad','p.producto','pedido.total','pedido.id_mesa')
+        $orderEdit = Order::select('pedido.cantidad','p.producto','pedido.total','pedido.id_mesa',
+        'pedido.idPedido','p.idProducto')
         ->join('producto as p','p.idProducto','pedido.id_producto')
         ->where('cod_pedido',$request->cod_pedido)
         ->where('estado',true)
@@ -159,5 +160,17 @@ class OrderController extends Controller
         ->where('estado',true)
         ->get();
         return view('waiter.order_show',compact('showOrder'));
+    }
+    public function deleteProduct(Request $request)
+    {
+        try {
+            DB::beginTransaction();
+            Order::where('idPedido', $request->idPedido)->delete();
+            DB::commit();
+            return response()->json(['message' => 'success','idPedido' => $request->idPedido],200);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return response()->json(['message' => $th],500);
+        }
     }
 }
