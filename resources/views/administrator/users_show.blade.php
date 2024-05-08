@@ -14,11 +14,7 @@
           <th>Apellidos</th>
           <th>Cédula</th>
           <th>Correo</th>
-          <th>Edad</th>
-          <th>Fecha de nacimiento</th>
-          <th>Género</th>
           <th>Ciudad</th>
-          <th>País</th>
           <th>Sede</th>
           <th>Tipo</th>
           <th>Acciones</th>
@@ -31,11 +27,7 @@
             <td>{{ $item->primer_ape }} {{ $item->segundo_ape}}</td>
             <td>{{ $item->cedula }}</td>
             <td>{{ $item->email }}</td>
-            <td>{{ $item->edad }}</td>
-            <td>{{ $item->fecha_nac }}</td>
-            <td>{{ $item->genero }}</td>
             <td>{{ $item->ciudad }}</td>
-            <td>{{ $item->pais }}</td>
             <td>{{ $item->sede }}</td>
             <td>{{ $item->rol }}</td>
             <td>
