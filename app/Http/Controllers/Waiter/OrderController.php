@@ -43,7 +43,7 @@ class OrderController extends Controller
     {
         try {
             DB::beginTransaction();
-            $existProduct = Order::select('idPedido')
+            $existProduct = Order::select('idPedido','cantidad')
             ->where('id_producto',$request->id_producto)
             ->where('id_mesa',$request->id_mesa)
             ->where('pagado',false)
@@ -61,10 +61,16 @@ class OrderController extends Controller
                 $table->save();
             }
             if($existProduct != null){
-                $table =  Order::find($existProduct->idPedido);
-                $table->cantidad = $table->cantidad + $request->cantidad;
-                $table->total = ($table->cantidad) * $valueProduct;
-                $table->save();
+                if(($request->cantidad + $existProduct->cantidad) > 0 ){
+                    $table =  Order::find($existProduct->idPedido);
+                    $table->cantidad = $table->cantidad + $request->cantidad;
+                    $table->total = ($table->cantidad) * $valueProduct;
+                    $table->save();
+                }else{
+                    DB::rollBack();
+                    Alert::error('¡Error!', 'Cantidad no admitida');
+                    return back();
+                }
             }else{
                 $validateOrder =  Order::select('cod_pedido')->where('id_mesa',$request->id_mesa)
                 ->where('pagado',true)
@@ -74,6 +80,11 @@ class OrderController extends Controller
                     $v = strstr($validateOrder->cod_pedido,"_",true); //trae los caracteres antes del guión
                     $v = $v + 1;
                     $cod_pedido = $v.strstr($validateOrder->cod_pedido,"_"); //trae los caracteres después del guión
+                }
+                if($request->cantidad <= 0){
+                    DB::rollBack();
+                    Alert::error('¡Error!', 'Cantidad no admitida');
+                    return back();
                 }
                 $table = new Order();
                 $table->cod_pedido = $cod_pedido;
@@ -85,16 +96,15 @@ class OrderController extends Controller
                 $table->id_mesa = $request->id_mesa;
                 $table->save();
             }
-            Alert::success('¡Agregado!', 'Pedido agregado correctamente');
             DB::commit();
+            Alert::success('¡Agregado!', 'Pedido agregado correctamente');
+            return redirect()->route('waiter.order.showEdit',['cod_pedido' => $table->cod_pedido]);
         } catch (\Throwable $th) {
             DB::rollBack();
             // dd($th);
             Alert::error('¡Error!', 'No se pudo agregar el pedido');
             return back();
         }
-
-        return redirect()->route('waiter.order.showEdit',['cod_pedido' => $table->cod_pedido]);
     }
     public function showEdit(Request $request)
     {
