@@ -9,43 +9,43 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function stateInventary(id, token) {
-  let checkbox = document.getElementById('stateInv_' + id);
+  let checkbox = document.getElementById("stateInv_" + id);
   let state = checkbox.checked;
-  let xhr = new XMLHttpRequest();
-
-  xhr.open("POST", "inventarios/activar");
-  xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-  xhr.onload = function () {
-    if (xhr.responseText === 'success') {
-      let element = document.querySelector('.bgi-' + id);
-      if (element.classList.contains('bg-danger')) {
-        element.classList.remove('bg-danger');
+  fetch("inventarios/activar", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json;charset=UTF-8",
+    },
+    body: JSON.stringify({
+      _token: token,
+      idInv: id,
+      state: state,
+    }),
+  })
+  .then((response) => response.json())
+  .then((data) => {
+    if (data.message !== 'success') {
+      Toast.fire({
+        icon: "error",
+        title: "Error al cambiar de estado",
+      });
+      checkbox.checked = !state;
+      console.error(data.message);
+      return;
+    }
+    let element = document.querySelector(".bgi-" + id);
+      if (element.classList.contains("bg-danger")) {
+        element.classList.remove("bg-danger");
       } else {
-        element.classList.add('bg-danger');
+        element.classList.add("bg-danger");
       }
       Toast.fire({
         icon: "success",
-        title: "Estado cambiado correctamente"
+        title: "Estado cambiado correctamente",
       });
-    } else {
-      Toast.fire({
-        icon: "error",
-        title: "Error al cambiar de estado "
-      });
-      console.error(xhr.status);
-      checkbox.checked = !state;
-    }
-  };
-  xhr.onerror = function () {
-    console.error("Error en la solicitud:", xhr.status);
+  })
+  .catch((error) => {
+    console.error("Error en la solicitud:", error);
     checkbox.checked = state;
-  };
-
-  let data = JSON.stringify({
-    _token: token,
-    idInv: id,
-    state: state
   });
-  xhr.send(data);
 }
-

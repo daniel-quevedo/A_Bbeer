@@ -58,11 +58,10 @@ class InventaryController extends Controller
                 'estado' => ($request->state == "true") ? 1 : 0
             ]);
             DB::commit();
-            $message = 'success';
+            return response()->json(['message' => 'success'], 200);
         } catch (\Throwable $th) {
             DB::rollBack();
-            $message = 'error: '.$th;
+            return response()->json(['message' => $th], 500);
         }
-        return $message;
     }
 }
