@@ -27,7 +27,7 @@ class HeadquarterController extends Controller
             $table->sede = $request->sede;
             $table->save();
             DB::commit();
-            Alert::success('¡Agregado!', 'Sede agregada correctamente');
+            Alert::toast('Sede agregada correctamente','success');
         } catch (\Throwable $th) {
             DB::rollBack();
             Alert::error('¡Error!', 'No se pudo agregar la sede');
@@ -50,7 +50,7 @@ class HeadquarterController extends Controller
             $table->sede = $request->sede;
             $table->save();
             DB::commit();
-            Alert::success('¡Actualizado!', 'Sede actualizada correctamente');
+            Alert::toast('Sede actualizada correctamente','success');
         } catch (\Throwable $th) {
             DB::rollBack();
             Alert::error('¡Error!', 'No se pudo actualizar la sede');
@@ -67,7 +67,7 @@ class HeadquarterController extends Controller
             DB::beginTransaction();
             Headquarter::where('idSede',$request->id)->delete();
             DB::commit();
-            Alert::success('Eliminado!', 'Sede eliminada correctamente');
+            Alert::toast('Sede eliminada correctamente','success');
         } catch (\Throwable $th) {
             DB::rollBack();
             Alert::error('¡Error!', 'No se pudo eliminar la sede');

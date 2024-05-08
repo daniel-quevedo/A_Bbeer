@@ -27,7 +27,7 @@ class TypeProductController extends Controller
             $table->tipo_producto = $request->tipo_producto;
             $table->save();
             DB::commit();
-            Alert::success('¡Agregado!', 'Tipo de producto agregado correctamente');
+            Alert::toast('Tipo de producto agregado correctamente','success');
         } catch (\Throwable $th) {
             DB::rollBack();
             Alert::error('¡Error!', 'No se pudo agregar este tipo de producto');
@@ -49,7 +49,7 @@ class TypeProductController extends Controller
             $table->tipo_producto = $request->tipo_producto;
             $table->save();
             DB::commit();
-            Alert::success('¡Actualizado!', 'Tipo de producto actualizado correctamente');
+            Alert::toast('Tipo de producto actualizado correctamente','success');
         } catch (\Throwable $th) {
             DB::rollBack();
             Alert::error('¡Error!', 'No se pudo actualizar este tipo de producto');
@@ -66,7 +66,7 @@ class TypeProductController extends Controller
             DB::beginTransaction();
             TypeProduct::where('idTipoProducto',$request->id)->delete();
             DB::commit();
-            Alert::success('Eliminado!', 'Tipo de producto eliminado correctamente');
+            Alert::toast('Tipo de producto eliminado correctamente','success');
         } catch (\Throwable $th) {
             DB::rollBack();
             Alert::error('¡Error!', 'No se pudo eliminar este tipo de producto');

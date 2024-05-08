@@ -59,7 +59,7 @@ class UserController extends Controller
             $table->password = Hash::make('123456');
             $table->save();
             DB::commit();
-            Alert::success('¡Agregado!', 'Usuario agregado correctamente');
+            Alert::toast('Usuario agregado correctamente','success');
         } catch (\Throwable $th) {
             DB::rollBack();
             Alert::error('¡Error!', 'No se pudo agregar el usuario');
@@ -98,7 +98,7 @@ class UserController extends Controller
             $table->id_sede = $request->id_sede;
             $table->save();
             DB::commit();
-            Alert::success('¡Actualizado!', 'Usuario actualizado correctamente');
+            Alert::toast('Usuario actualizado correctamente','success');
         } catch (\Throwable $th) {
             DB::rollBack();
             Alert::error('¡Error!', 'No se pudo actualizar el usuario');
@@ -114,7 +114,7 @@ class UserController extends Controller
             DB::beginTransaction();
             User::where('id',$request->id)->delete();
             DB::commit();
-            Alert::success('Eliminado!', 'Usuario eliminado correctamente');
+            Alert::toast('Usuario eliminado correctamente','success');
         } catch (\Throwable $th) {
             DB::rollBack();
             Alert::error('¡Error!', 'No se pudo eliminar el usuario');

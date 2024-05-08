@@ -42,7 +42,7 @@ class MesaController extends Controller
             $table->id_ciudad = $request->id_ciudad;
             $table->save();
             DB::commit();
-            Alert::success('¡Agregado!', 'Mesa agregada correctamente');
+            Alert::toast('Mesa agregada correctamente','success');
         } catch (\Throwable $th) {
             DB::rollBack();
             Alert::error('¡Error!', 'No se pudo agregar la mesa');
@@ -72,7 +72,7 @@ class MesaController extends Controller
             $table->id_ciudad = $request->id_ciudad;
             $table->save();
             DB::commit();
-            Alert::success('¡Actualizado!', 'Mesa actualizada correctamente');
+            Alert::toast('Mesa actualizada correctamente','success');
         } catch (\Throwable $th) {
             DB::rollBack();
             Alert::error('¡Error!', 'No se pudo actualizar la mesa');
@@ -88,7 +88,7 @@ class MesaController extends Controller
             DB::beginTransaction();
             Mesa::where('idMesa',$request->id)->delete();
             DB::commit();
-            Alert::success('Eliminado!', 'Mesa eliminada correctamente');
+            Alert::toast('Mesa eliminada correctamente','success');
         } catch (\Throwable $th) {
             DB::rollBack();
             Alert::error('¡Error!', 'No se pudo eliminar la mesa');

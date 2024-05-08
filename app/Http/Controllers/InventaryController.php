@@ -39,7 +39,7 @@ class InventaryController extends Controller
             $table->cantidad = $request->cantidad;
             $table->save();
             DB::commit();
-            Alert::success('¡Actualizado!', 'Inventario actualizado correctamente');
+            Alert::toast('Inventario actualizado correctamente','success');
         } catch (\Throwable $th) {
             DB::rollBack();
             Alert::error('¡Error!', 'No se pudo agregar el inventario');

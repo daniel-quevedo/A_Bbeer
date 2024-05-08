@@ -27,7 +27,7 @@ class CountryController extends Controller
             $table->pais = $request->pais;
             $table->save();
             DB::commit();
-            Alert::success('¡Agregado!', 'País agregado correctamente');
+            Alert::toast('País agregado correctamente','success');
         } catch (\Throwable $th) {
             DB::rollBack();
             Alert::error('¡Error!', 'No se pudo agregar el país');
@@ -49,7 +49,7 @@ class CountryController extends Controller
             $table->pais = $request->pais;
             $table->save();
             DB::commit();
-            Alert::success('¡Actualizado!', 'País actualizado correctamente');
+            Alert::toast('País actualizado correctamente','success');
         } catch (\Throwable $th) {
             DB::rollBack();
             Alert::error('¡Error!', 'No se pudo actualizar el país');
@@ -66,7 +66,7 @@ class CountryController extends Controller
             DB::beginTransaction();
             Country::where('idPais',$request->id)->delete();
             DB::commit();
-            Alert::success('Eliminado!', 'Ciudad eliminada correctamente');
+            Alert::toast('País eliminado correctamente','success');
         } catch (\Throwable $th) {
             DB::rollBack();
             Alert::error('¡Error!', 'No se pudo eliminar la ciudad');

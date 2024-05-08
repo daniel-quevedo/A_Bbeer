@@ -97,7 +97,7 @@ class OrderController extends Controller
                 $table->save();
             }
             DB::commit();
-            Alert::success('¡Agregado!', 'Pedido agregado correctamente');
+            Alert::toast('Pedido agregado correctamente','success');
             return redirect()->route('waiter.order.showEdit',['cod_pedido' => $table->cod_pedido]);
         } catch (\Throwable $th) {
             DB::rollBack();
@@ -129,7 +129,7 @@ class OrderController extends Controller
                 'updated_at' => now()
             ]);
             DB::commit();
-            Alert::success('¡Actualizado!', 'Pedido pagado correctamente');
+            Alert::toast('Pedido pagado correctamente','success');
         } catch (\Throwable $th) {
             DB::rollBack();
             Alert::error('¡Error!', 'No se pudo pagar el pedido');

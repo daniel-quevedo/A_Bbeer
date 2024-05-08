@@ -37,12 +37,12 @@ class ProductController extends Controller
             $table->save();
 
             $table2 = new Inventary();
-            $table2->cantidad = 1;
+            $table2->cantidad = 0;
             $table2->id_producto = $table->idProducto;
             $table2->estado = true;
             $table2->save();
             DB::commit();
-            Alert::success('¡Agregado!', 'Producto agregado correctamente');
+            Alert::toast('Producto agregado correctamente','success');
         } catch (\Throwable $th) {
             DB::rollBack();
             Alert::error('¡Error!', 'No se pudo agregar el producto');
@@ -70,7 +70,7 @@ class ProductController extends Controller
             $table->id_tipoProducto = $request->id_tipoProducto;
             $table->save();
             DB::commit();
-            Alert::success('¡Actualizado!', 'Producto actualizado correctamente');
+            Alert::toast('Producto actualizado correctamente','success');
         } catch (\Throwable $th) {
             DB::rollBack();
             Alert::error('¡Error!', 'No se pudo actualizar el producto');
@@ -92,7 +92,7 @@ class ProductController extends Controller
                 Inventary::where('id_producto',$request->id)->delete();
                 Product::where('idProducto',$request->id)->delete();
                 DB::commit();
-                Alert::success('Eliminado!', 'Producto eliminado correctamente');
+                Alert::toast('Producto eliminado correctamente','success');
             }
         } catch (\Throwable $th) {
             DB::rollBack();

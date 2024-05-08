@@ -27,7 +27,7 @@ class CityController extends Controller
             $table->ciudad = $request->ciudad;
             $table->save();
             DB::commit();
-            Alert::success('¡Agregado!', 'Ciudad agregada correctamente');
+            Alert::toast('Ciudad agregada correctamente','success');
         } catch (\Throwable $th) {
             DB::rollBack();
             Alert::error('¡Error!', 'No se pudo agregar la ciudad');
@@ -50,7 +50,7 @@ class CityController extends Controller
             $table->ciudad = $request->ciudad;
             $table->save();
             DB::commit();
-            Alert::success('¡Actualizado!', 'Ciudad actualizada correctamente');
+            Alert::toast('Ciudad actualizada correctamente','success');
         } catch (\Throwable $th) {
             DB::rollBack();
             Alert::error('¡Error!', 'No se pudo actualizar la ciudad');
@@ -67,7 +67,7 @@ class CityController extends Controller
             DB::beginTransaction();
             City::where('idCiudad',$request->id)->delete();
             DB::commit();
-            Alert::success('Eliminado!', 'Ciudad eliminada correctamente');
+            Alert::toast('Ciudad eliminada correctamente','success');
         } catch (\Throwable $th) {
             DB::rollBack();
             Alert::error('¡Error!', 'No se pudo eliminar la ciudad');
