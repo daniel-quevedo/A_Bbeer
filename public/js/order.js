@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
-  let dataTable = new DataTable(document.getElementById('table-order'), {
+  new DataTable(document.getElementById('table-order'), {
     language: {
       url: 'https://cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json',
     },
@@ -11,9 +11,43 @@ document.addEventListener("DOMContentLoaded", function() {
 
 let p = document.getElementById('product');
 let valueU = document.getElementById('valueU');
-p.addEventListener('change', function(){
-  valueU.value = p.value;
-});
+if (p) {
+  p.addEventListener('change', function(){
+    valueU.value = p.value;
+  });
+}
+
+function delOrder(cod, token) {
+  fetch("pedidos/eliminar", {
+    method: 'POST',
+    headers: {
+      "Content-Type": "application/json;charset=UTF-8",
+    },
+    body: JSON.stringify({
+      _token: token,
+      cod_pedido: cod
+    })
+  })
+  .then(response => response.json())
+  .then((data) => {
+    if (data.message == 'success') {
+      Toast.fire({
+        icon: "success",
+        title: "Pedido eliminado correctamente",
+      });
+      if (document.getElementById('row-' + data.cod_pedido)) {
+        document.getElementById('row-' + data.cod_pedido).hidden = true;
+      }
+    }else{
+      Toast.fire({
+        icon: "error",
+        title: "No se pudo eliminar el pedido",
+      });
+      console.error(data.message);
+    }
+  })
+  .catch(error => console.log(error));
+}
 
 function delProduct(id, token) {
   fetch("eliminar-producto", {

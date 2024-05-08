@@ -152,15 +152,11 @@ class OrderController extends Controller
             }
             Order::where('cod_pedido',$request->cod_pedido)->delete();
             DB::commit();
-            Alert::success('Eliminado!', 'Pedido eliminado correctamente');
+            return response()->json(['message' => 'success','cod_pedido' => $request->cod_pedido], 200);
         } catch (\Throwable $th) {
             DB::rollBack();
-            Alert::error('¡Error!', 'No se pudo eliminar el pedido');
-            // dd($th);
-            return back();
+            return response()->json(['message' => $th], 500);
         }
-
-        return redirect()->route('waiter.order.index');
     }
     public function show(Request $request)
     {

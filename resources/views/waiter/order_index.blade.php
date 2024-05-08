@@ -20,7 +20,7 @@
       </thead>
       <tbody >
         @foreach ($orders as $item)
-          <tr class="text-dark bg-opacity-50 {{ ($item->pagado == 1 ? 'bg-success' : 'bg-danger') }}">
+          <tr id="row-{{ $item->cod_pedido }}" class="text-dark bg-opacity-50 {{ ($item->pagado == 1 ? 'bg-success' : 'bg-danger') }}">
             <td>{{ $item->cod_pedido }}</td>
             <td>{{ $item->mesa }}</td>
             <td>{{ $item->cantidad }}</td>
@@ -39,7 +39,7 @@
                       <button formaction="{{ route('waiter.order.edit') }}" class="btn btn-sm btn-success" title="Pagar"><i class="fa-solid fa-coins"></i></button>
                     </div>
                     <div class="col-4">
-                      <button formaction="{{ route('waiter.order.delete') }}" class="btn btn-sm btn-danger" title="Eliminar"><i class="fa-solid fa-trash"></i></button>
+                      <i class="fa-solid fa-trash btn btn-danger" title="Eliminar" onclick="delOrder('{{ $item->cod_pedido }}','{{ csrf_token() }}')"></i>
                     </div>
                   @else
                     <div class="col-4">
