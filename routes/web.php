@@ -44,14 +44,8 @@ Route::middleware('auth')->group(function () {
         Route::post('usuarios/editar', 'edit')->name('admin.users.edit');
         Route::post('usuarios/editados', 'showEdit')->name('admin.users.showEdit');
         Route::post('usuarios/eliminar', 'delete')->name('admin.users.delete');
-    });
-    Route::controller(CityController::class)->group(function() {
-        Route::get('ciudades', 'index')->name('admin.city.index');
-        Route::get('ciudades/agregar', 'store')->name('admin.city.store');
-        Route::post('ciudades/agregadas', 'add')->name('admin.city.add');
-        Route::post('ciudades/editar', 'edit')->name('admin.city.edit');
-        Route::post('ciudades/editadas', 'showEdit')->name('admin.city.showEdit');
-        Route::post('ciudades/eliminar', 'delete')->name('admin.city.delete');
+        Route::get('usuarios/descargar-excel', 'donwloadExcel')->name('admin.users.download');
+        Route::post('usuarios/importar-excel', 'importExcel')->name('admin.users.import');
     });
     Route::controller(CountryController::class)->group(function() {
         Route::get('paises', 'index')->name('admin.country.index');
@@ -60,6 +54,14 @@ Route::middleware('auth')->group(function () {
         Route::post('paises/editar', 'edit')->name('admin.country.edit');
         Route::post('paises/editados', 'showEdit')->name('admin.country.showEdit');
         Route::post('paises/eliminar', 'delete')->name('admin.country.delete');
+    });
+    Route::controller(CityController::class)->group(function() {
+        Route::get('ciudades', 'index')->name('admin.city.index');
+        Route::get('ciudades/agregar', 'store')->name('admin.city.store');
+        Route::post('ciudades/agregadas', 'add')->name('admin.city.add');
+        Route::post('ciudades/editar', 'edit')->name('admin.city.edit');
+        Route::post('ciudades/editadas', 'showEdit')->name('admin.city.showEdit');
+        Route::post('ciudades/eliminar', 'delete')->name('admin.city.delete');
     });
     Route::controller(MesaController::class)->group(function() {
         Route::get('mesas', 'index')->name('admin.mesa.index');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Imports\UsersImport;
 use App\Models\City;
 use App\Models\Country;
 use App\Models\Gender;
@@ -14,6 +15,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Maatwebsite\Excel\Facades\Excel;
 
 class UserController extends Controller
 {
@@ -121,7 +123,20 @@ class UserController extends Controller
             // dd($th);
             return back();
         }
-
         return redirect()->route('admin.users.index');
+    }
+    public function importExcel(Request $request)
+    {
+        try {
+            Excel::import(new UsersImport, $request->file('file'));
+            return response()->json(['message' => 'success'], 200);
+        } catch (\Throwable $e) {
+            return response()->json(['message' => $e,'info' => $e->getMessage()], 422);
+        }
+    }
+    public function donwloadExcel()
+    {
+        $excelUsers = storage_path('plantillas/Users.xlsx');
+        return response()->download($excelUsers, 'plantilla usuarios.xlsx');
     }
 }

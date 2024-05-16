@@ -1,12 +1,18 @@
 @extends('layouts.layout')
 
-@section('título','Usuarios')
+@section('título', 'Usuarios')
 
 @section('content')
   <div class="col-12 ">
     <a href="{{ route('admin.users.store') }}" class="btn btn-outline-success">Agregar Usuarios</a>
   </div>
   <div class="mt-5 table-responsive">
+    <div class="text-end m-2">
+      <a href="{{ route('admin.users.download') }}" class="btn btn-sm btn-outline-secondary">Descargar plantilla</a>
+      <label for="excel-file" class="btn btn-sm btn-outline-info">Subir plantilla</label>
+      <input id="excel-file" onchange="importExcel()" type="file" class="d-none" accept=".xlsx, .xls">
+    </div>
+
     <table class="table table-sm table-striped" id="table-users">
       <thead class="table-light">
         <tr>
@@ -20,11 +26,11 @@
           <th>Acciones</th>
         </tr>
       </thead>
-      <tbody >
+      <tbody>
         @foreach ($users as $item)
           <tr>
-            <td>{{ $item->primer_nom }} {{ $item->segundo_nom}}</td>
-            <td>{{ $item->primer_ape }} {{ $item->segundo_ape}}</td>
+            <td>{{ $item->primer_nom }} {{ $item->segundo_nom }}</td>
+            <td>{{ $item->primer_ape }} {{ $item->segundo_ape }}</td>
             <td>{{ $item->cedula }}</td>
             <td>{{ $item->email }}</td>
             <td>{{ $item->ciudad }}</td>
@@ -39,7 +45,8 @@
                     <button class="btn btn-sm btn-primary"><i class="fa-solid fa-pen-to-square"></i></button>
                   </div>
                   <div class="col-6">
-                    <button formaction="{{ route('admin.users.delete') }}" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i></button>
+                    <button formaction="{{ route('admin.users.delete') }}" class="btn btn-sm btn-danger"><i
+                        class="fa-solid fa-trash"></i></button>
                   </div>
                 </div>
               </form>
