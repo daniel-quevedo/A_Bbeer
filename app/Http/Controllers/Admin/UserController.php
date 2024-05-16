@@ -134,7 +134,7 @@ class UserController extends Controller
             return response()->json(['message' => $e,'info' => $e->getMessage()], 422);
         }
     }
-    public function donwloadExcel()
+    public function downloadExcel()
     {
         $excelUsers = storage_path('plantillas/Users.xlsx');
         return response()->download($excelUsers, 'plantilla usuarios.xlsx');

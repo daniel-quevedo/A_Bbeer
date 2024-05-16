@@ -44,7 +44,7 @@ Route::middleware('auth')->group(function () {
         Route::post('usuarios/editar', 'edit')->name('admin.users.edit');
         Route::post('usuarios/editados', 'showEdit')->name('admin.users.showEdit');
         Route::post('usuarios/eliminar', 'delete')->name('admin.users.delete');
-        Route::get('usuarios/descargar-excel', 'donwloadExcel')->name('admin.users.download');
+        Route::get('usuarios/descargar-excel', 'downloadExcel')->name('admin.users.download');
         Route::post('usuarios/importar-excel', 'importExcel')->name('admin.users.import');
     });
     Route::controller(CountryController::class)->group(function() {
@@ -94,6 +94,8 @@ Route::middleware('auth')->group(function () {
         Route::post('productos/editar', 'edit')->name('admin.product.edit');
         Route::post('productos/editados', 'showEdit')->name('admin.product.showEdit');
         Route::post('productos/eliminar', 'delete')->name('admin.product.delete');
+        Route::get('productos/descargar-excel', 'downloadExcel')->name('admin.product.download');
+        Route::post('productos/importar-excel', 'importExcel')->name('admin.product.import');
     });
     Route::controller(InventaryController::class)->group(function() {
         Route::get('inventarios', 'index')->name('inventary.index');

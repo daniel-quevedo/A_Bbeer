@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Imports\ProductImport;
 use App\Models\Inventary;
 use App\Models\Product;
 use App\Models\TypeProduct;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class ProductController extends Controller
@@ -101,5 +103,21 @@ class ProductController extends Controller
             return back();
         }
         return redirect()->route('admin.product.index');
+    }
+
+    public function importExcel(Request $request)
+    {
+
+        try {
+            Excel::import(new ProductImport, $request->file('file'));
+            return response()->json(['message' => 'success'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e,'info' => $e->getMessage()], 422);
+        }
+    }
+    public function downloadExcel()
+    {
+        $excelProducts = storage_path('plantillas/Products.xlsx');
+        return response()->download($excelProducts, 'plantilla productos.xlsx');
     }
 }
