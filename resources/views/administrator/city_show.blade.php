@@ -17,17 +17,18 @@
       <tbody >
         @foreach ($cities as $item)
           <tr>
-            <td>{{ $item->ciudad }}</td>
+            <td id="city-{{ $item->idCiudad }}">{{ $item->ciudad }}</td>
             <td>
-              <form action="{{ route('admin.city.showEdit') }}" method="post">
+              <form action="{{ route('admin.city.delete') }}" method="post">
                 @csrf
                 <input type="hidden" name="id" readonly value="{{ $item->idCiudad }}">
                 <div class="col-12 row">
                   <div class="col-6">
-                    <button class="btn btn-sm btn-primary"><i class="fa-solid fa-pen-to-square"></i></button>
+                    <i class="fa-solid fa-pen-to-square btn btn-primary px-2"
+                    onclick="showEditCity({{ $item->idCiudad }},'{{ csrf_token() }}')"></i>
                   </div>
                   <div class="col-6">
-                    <button formaction="{{ route('admin.city.delete') }}" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i></button>
+                    <button class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i></button>
                   </div>
                 </div>
               </form>
@@ -36,6 +37,30 @@
         @endforeach
       </tbody>
     </table>
+  </div>
+@endsection
+@section('modals')
+  <div class="modal fade" id="editCity" aria-hidden="true">
+    <div class="modal-dialog modal-sm modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Editar Ciudad</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" id="idCity" readonly>
+          <div class="mb-3 col-12">
+            <label class="form-label">Nombre del ciudad</label>
+            <input type="text" class="form-control" name="city" id="city">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-sm btn-success" data-bs-dismiss="modal"
+            onclick="editCity('{{ csrf_token() }}')">Guardar</button>
+        </div>
+      </div>
+    </div>
   </div>
 @endsection
 @section('scripts')

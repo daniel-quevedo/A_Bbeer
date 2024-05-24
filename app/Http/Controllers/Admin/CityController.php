@@ -39,7 +39,7 @@ class CityController extends Controller
     public function showEdit(Request $request)
     {
         $cityEdit = City::find($request->id);
-        return view('administrator.city_edit',compact('cityEdit'));
+        return response()->json(['message' => $cityEdit], 200);
 
     }
     public function edit(Request $request)
@@ -50,16 +50,12 @@ class CityController extends Controller
             $table->ciudad = $request->ciudad;
             $table->save();
             DB::commit();
-            Alert::toast('Ciudad actualizada correctamente','success');
+            return response()->json(['message' => 'success', 'newCity' => $table->ciudad], 200);
         } catch (\Throwable $th) {
             DB::rollBack();
-            Alert::error('¡Error!', 'No se pudo actualizar la ciudad');
+            return response()->json(['message' => $th], 500);
             // dd($th);
-            return back();
         }
-
-
-        return redirect()->route('admin.city.index');
     }
     public function delete(Request $request)
     {
