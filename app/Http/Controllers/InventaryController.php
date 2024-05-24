@@ -41,7 +41,7 @@ class InventaryController extends Controller
         try {
             DB::beginTransaction();
             $table = Inventary::find($request->id);
-            if (($request->cantidad + $table->cantidad) < 0  ) {
+            if (($request->cantidad + $table->cantidad) <= 0  ) {
                 return response()->json(['message' => 'fail'], 200);
             }else{
                 $table->cantidad = $request->cantidad;

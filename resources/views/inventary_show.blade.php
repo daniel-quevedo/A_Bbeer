@@ -3,7 +3,7 @@
 @section('título', 'Inventario')
 
 @section('content')
-  <div class="mt-5 table-responsive">
+  <div class="table-responsive">
     <table class="table table-sm table-striped" id="table-inventary">
       <thead class="table-light">
         <tr>
@@ -46,7 +46,7 @@
     <div class="modal-dialog modal-sm modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Editar cantidad</h5>
+          <h5 class="modal-title">Editar cantidad</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
