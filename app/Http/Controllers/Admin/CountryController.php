@@ -39,7 +39,7 @@ class CountryController extends Controller
     public function showEdit(Request $request)
     {
         $countryEdit = Country::find($request->id);
-        return view('administrator.country_edit',compact('countryEdit'));
+        return response()->json(['message' => $countryEdit], 200);
     }
     public function edit(Request $request)
     {
@@ -49,16 +49,12 @@ class CountryController extends Controller
             $table->pais = $request->pais;
             $table->save();
             DB::commit();
-            Alert::toast('País actualizado correctamente','success');
+            return response()->json(['message'=> 'success','newCountry'=> $table->pais],200);
         } catch (\Throwable $th) {
             DB::rollBack();
-            Alert::error('¡Error!', 'No se pudo actualizar el país');
+            return response()->json(['message'=> $th->getMessage()],500);
             // dd($th);
-            return back();
         }
-
-
-        return redirect()->route('admin.country.index');
     }
     public function delete(Request $request)
     {
