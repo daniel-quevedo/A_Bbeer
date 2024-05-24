@@ -7,6 +7,11 @@
     <a href="{{ route('admin.mesa.store') }}" class="btn btn-outline-success">Agregar Mesa</a>
   </div>
   <div class="mt-5 table-responsive">
+    <div class="text-end m-2">
+      <a href="{{ route('admin.mesa.download') }}" class="btn btn-sm btn-outline-secondary">Descargar plantilla</a>
+      <label for="excel-file" class="btn btn-sm btn-outline-info">Subir plantilla</label>
+      <input id="excel-file" onchange="importExcel()" type="file" class="d-none" accept=".xlsx, .xls">
+    </div>
     <table class="table table-sm table-striped" id="table-mesa">
       <thead class="table-light">
         <tr>

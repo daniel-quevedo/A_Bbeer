@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Imports\MesaImport;
 use App\Models\City;
 use App\Models\Country;
 use App\Models\Mesa;
@@ -10,6 +11,7 @@ use App\Models\Headquarter;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 
 class MesaController extends Controller
 {
@@ -97,5 +99,20 @@ class MesaController extends Controller
         }
 
         return redirect()->route('admin.mesa.index');
+    }
+
+    public function importExcel(Request $request)
+    {
+        try {
+            Excel::import(new MesaImport, $request->file('file'));
+            return response()->json(['message' => 'success'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e,'info' => $e->getMessage()], 422);
+        }
+    }
+    public function downloadExcel()
+    {
+        $excelProducts = storage_path('plantillas/Mesas.xlsx');
+        return response()->download($excelProducts, 'plantilla mesas.xlsx');
     }
 }

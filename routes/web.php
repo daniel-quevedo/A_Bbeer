@@ -70,6 +70,8 @@ Route::middleware('auth')->group(function () {
         Route::post('mesas/editar', 'edit')->name('admin.mesa.edit');
         Route::post('mesas/editadas', 'showEdit')->name('admin.mesa.showEdit');
         Route::post('mesas/eliminar', 'delete')->name('admin.mesa.delete');
+        Route::get('mesas/descargar-excel', 'downloadExcel')->name('admin.mesa.download');
+        Route::post('mesas/importar-excel', 'importExcel')->name('admin.mesa.import');
     });
     Route::controller(HeadquarterController::class)->group(function() {
         Route::get('sedes', 'index')->name('admin.headquarter.index');
