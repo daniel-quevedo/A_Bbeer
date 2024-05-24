@@ -82,12 +82,12 @@ Route::middleware('auth')->group(function () {
         Route::post('sedes/eliminar', 'delete')->name('admin.headquarter.delete');
     });
     Route::controller(TypeProductController::class)->group(function() {
-        Route::get('tipo/productos', 'index')->name('admin.typeProduct.index');
-        Route::get('tipo/productos/agregar', 'store')->name('admin.typeProduct.store');
-        Route::post('tipo/productos/agregados', 'add')->name('admin.typeProduct.add');
-        Route::post('tipo/productos/editar', 'edit')->name('admin.typeProduct.edit');
-        Route::post('tipo/productos/editados', 'showEdit')->name('admin.typeProduct.showEdit');
-        Route::post('tipo/productos/eliminar', 'delete')->name('admin.typeProduct.delete');
+        Route::get('tipo-productos', 'index')->name('admin.typeProduct.index');
+        Route::get('tipo-productos/agregar', 'store')->name('admin.typeProduct.store');
+        Route::post('tipo-productos/agregados', 'add')->name('admin.typeProduct.add');
+        Route::post('tipo-productos/editar', 'edit')->name('admin.typeProduct.edit');
+        Route::post('tipo-productos/editados', 'showEdit')->name('admin.typeProduct.showEdit');
+        Route::post('tipo-productos/eliminar', 'delete')->name('admin.typeProduct.delete');
     });
     Route::controller(ProductController::class)->group(function() {
         Route::get('productos', 'index')->name('admin.product.index');

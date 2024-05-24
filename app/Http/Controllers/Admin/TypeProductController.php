@@ -39,7 +39,7 @@ class TypeProductController extends Controller
     public function showEdit(Request $request)
     {
         $typeProductEdit = TypeProduct::find($request->id);
-        return view('administrator.typeProduct_edit',compact('typeProductEdit'));
+        return response()->json(['message' => $typeProductEdit], 200);
     }
     public function edit(Request $request)
     {
@@ -49,16 +49,12 @@ class TypeProductController extends Controller
             $table->tipo_producto = $request->tipo_producto;
             $table->save();
             DB::commit();
-            Alert::toast('Tipo de producto actualizado correctamente','success');
+            return response()->json(['message' => 'success', 'newTypeProd' => $table->tipo_producto], 200);
         } catch (\Throwable $th) {
             DB::rollBack();
-            Alert::error('¡Error!', 'No se pudo actualizar este tipo de producto');
+            return response()->json(['message' => $th], 500);
             // dd($th);
-            return back();
         }
-
-
-        return redirect()->route('admin.typeProduct.index');
     }
     public function delete(Request $request)
     {
