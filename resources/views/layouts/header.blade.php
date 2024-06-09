@@ -1,6 +1,6 @@
 <div class="d-flex justify-content-between">
   <div class="menu">
-    <a href="javascript:void(0)" onclick="optSidebar()">
+    <a onclick="optSidebar()">
       <i class="fa-solid fa-bars"></i>
     </a>
     <span>A Bbeer</span>

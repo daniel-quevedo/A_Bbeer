@@ -3,13 +3,13 @@
 @section('título', 'Usuarios')
 
 @section('content')
-  <div class="col-12 ">
-    <a href="{{ route('admin.users.store') }}" class="btn btn-outline-success">Agregar Usuarios</a>
+  <div class="col-12">
+    <a href="{{ route('admin.users.store') }}" class="bt bt-success">Agregar Usuarios</a>
   </div>
   <div class="mt-5 table-responsive">
     <div class="text-end m-2">
-      <a href="{{ route('admin.users.download') }}" class="btn btn-sm btn-outline-secondary">Descargar plantilla</a>
-      <label for="excel-file" class="btn btn-sm btn-outline-info">Subir plantilla</label>
+      <a href="{{ route('admin.users.download') }}" class="bt bt-sm bt-secondary">Descargar plantilla</a>
+      <label for="excel-file" class="bt bt-sm bt-info">Subir plantilla</label>
       <input id="excel-file" onchange="importExcel()" type="file" class="d-none" accept=".xlsx, .xls">
     </div>
 
@@ -42,11 +42,11 @@
                 <input type="hidden" name="id" readonly value="{{ $item->id }}">
                 <div class="col-12 row">
                   <div class="col-6">
-                    <button class="btn btn-sm btn-primary"><i class="fa-solid fa-pen-to-square"></i></button>
+                    <button class="bt-btn bt-edit"><i class="bt-ico fa-solid fa-pen-to-square"></i></button>
                   </div>
                   <div class="col-6">
-                    <button formaction="{{ route('admin.users.delete') }}" class="btn btn-sm btn-danger"><i
-                        class="fa-solid fa-trash"></i></button>
+                    <button formaction="{{ route('admin.users.delete') }}" class="bt-btn bt-del"><i
+                        class="bt-ico fa-solid fa-trash"></i></button>
                   </div>
                 </div>
               </form>

@@ -12,6 +12,7 @@
   <script src="{{ asset('vendor/sweetalert/sweetalert.all.js') }}"></script>
   <link rel="stylesheet" href="{{ asset('bootstrap/css/datatable/bootstrap5.2.min.css') }}">
   <link rel="stylesheet" href="{{ asset('bootstrap/css/datatable/datatables.bootstrap5.2.min.css') }}">
+  {{-- <link rel="stylesheet" href="{{ asset('bootstrap/css/datatable/responsive.bootstrap5.css') }}"> --}}
   @yield('links')
   <title>@yield('título','Inicio')</title>
 </head>
@@ -32,7 +33,11 @@
 </body>
 <script src="{{ asset('js/jquery/jquery3.5.1.js') }}"></script>
 <script src="{{ asset('bootstrap/js/datatables/jquery.datatables.min.js') }}"></script>
+{{-- <script src="{{ asset('bootstrap/js/bootstrap.bundle.min.js') }}"></script> --}}
+{{-- <script src="https://cdn.datatables.net/2.0.7/js/dataTables.js"></script> --}}
 <script src="{{ asset('bootstrap/js/datatables/datatables.bootstrap5.2.min.js') }}"></script>
+{{-- <script src="{{ asset('bootstrap/js/datatables/dataTables.responsive.js') }}"></script>
+<script src="{{ asset('bootstrap/js/datatables/responsive.bootstrap5.js') }}"></script> --}}
 
 @if (Auth::user()->remember_token == null)
 <script>
